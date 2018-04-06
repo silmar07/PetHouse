@@ -9,6 +9,8 @@ public class incio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incio);
+        //prueba
+
     /*hola*/
         //comentario
     }
