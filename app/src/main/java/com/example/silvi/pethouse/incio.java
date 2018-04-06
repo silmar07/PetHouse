@@ -10,6 +10,7 @@ public class incio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incio);
         /*hola*/
+        //pueba
 
         //comentario
     }
