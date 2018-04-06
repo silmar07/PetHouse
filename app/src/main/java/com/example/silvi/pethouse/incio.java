@@ -11,6 +11,6 @@ public class incio extends AppCompatActivity {
         setContentView(R.layout.activity_incio);
         /*hola*/
 
-        //comentarios
+
     }
 }
