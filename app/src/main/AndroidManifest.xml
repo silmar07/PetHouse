@@ -9,13 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".incio">
+        <activity android:name=".inicio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".regNombre" />
+        <activity android:name=".regEmail" />
+        <activity android:name=".regContr" />
+        <activity android:name=".regEdad"></activity>
     </application>
 
 </manifest>
