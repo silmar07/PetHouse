@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class regNombre extends AppCompatActivity {
 
@@ -20,8 +21,28 @@ public class regNombre extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                //guaradamos los datos
+            EditText nom = (EditText) findViewById(R.id.textPersonName);
+            EditText ape = (EditText) findViewById(R.id.textPersonApe);
+
+            nom.toString().trim();
+            ape.toString().trim();
+            if(nom.equals("") || ape.equals("")){
+
+                Toast mensaje =
+                        Toast.makeText(getApplicationContext(),
+                                "Faltan datos", Toast.LENGTH_LONG);
+
+                mensaje.show();
+
+            }else{
+
                 Intent intent = new Intent(regNombre.this, regEmail.class);
+                intent.putExtra("nombre",nom.getText());
+                intent.putExtra("apellidos",ape.getText());
                 startActivity(intent);
+
+            }
             }
         });
 
