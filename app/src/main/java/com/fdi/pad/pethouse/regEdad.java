@@ -41,7 +41,7 @@ public class regEdad extends AppCompatActivity {
                     mensaje.show();
                 }else{
 
-                    Intent intent = new Intent(regEdad.this, main.class);
+                    Intent intent = new Intent(regEdad.this, login.class);
                     intent.putExtra("nombre",datoNombre);
                     intent.putExtra("nombre",datoApellidos);
                     intent.putExtra("email",datoEmail);
