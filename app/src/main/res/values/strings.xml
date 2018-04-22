@@ -1,8 +1,15 @@
 <resources>
-    <string name="app_name">PetHouse</string>
-    <string name="terminos"> Al pulsar Entrar o Registrarse, confirmo que estoy de acuerdo con las
-        siguientes condiciones de PetHouse : [Condiciones del servicio], [Términos y Condiciones de
-        Pago del servicio], [Política de privacidad] y [Politica contra el abandono animal]. </string>
-    <string name="reqEdad">La aplicación de PetHouse sólamente puedes ser utilizada
-         por personas mayores de 18 años</string>
+    <string name="app_name" translatable="false">PetHouse</string>
+    <string name="logo_description">PetHouse logo.</string>
+    <string name="email">Email:</string>
+    <string name="email_description">User\s email.</string>
+    <string name="email_hint">Enter your email.</string>
+    <string name="password">Password:</string>
+    <string name="password_description">User\s password.</string>
+    <string name="password_hint">Enter your password.</string>
+    <string name="enter_button">Enter</string>
+    <string name="register_button">Register</string>
+    <string name="terms">By clicking on Enter or Register, I confirm that I agree with the following PetHouse conditions: [Terms of Service], [Terms and Conditions of Payment of the service], [Privacy policy] and [Policy against animal abandonment].</string>
+    <string name="reqEdad">The PetHouse application can only be used by people over 18 years of age.</string>
+
 </resources>

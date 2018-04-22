@@ -6,19 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class main extends AppCompatActivity {
+public class login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
-        Button button = findViewById(com.fdi.pad.pethouse.R.id.btnReg);
+        Button button = findViewById(R.id.register_button);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                Intent intent = new Intent(main.this, regNombre.class);
+                Intent intent = new Intent(login.this, regNombre.class);
                 startActivity(intent);
             }
         });
