@@ -1,4 +1,4 @@
-package com.example.silvi.pethouse;
+package com.fdi.pad.pethouse;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,17 +13,17 @@ public class regNombre extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reg_nombre);
+        setContentView(com.fdi.pad.pethouse.R.layout.activity_reg_nombre);
 
 
-        Button button = findViewById(R.id.btnSigNom);
+        Button button = findViewById(com.fdi.pad.pethouse.R.id.btnSigNom);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 //guaradamos los datos
-            EditText nom = (EditText) findViewById(R.id.textPersonName);
-            EditText ape = (EditText) findViewById(R.id.textPersonApe);
+            EditText nom = (EditText) findViewById(com.fdi.pad.pethouse.R.id.textPersonName);
+            EditText ape = (EditText) findViewById(com.fdi.pad.pethouse.R.id.textPersonApe);
 
             nom.toString().trim();
             ape.toString().trim();

@@ -1,4 +1,4 @@
-package com.example.silvi.pethouse;
+package com.fdi.pad.pethouse;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,29 +8,31 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class regEmail extends AppCompatActivity {
+public class regEdad extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reg_email);
-
+        setContentView(com.fdi.pad.pethouse.R.layout.activity_reg_edad);
 
         //recibimos datos
         Bundle b =getIntent().getExtras();
 
         final String datoNombre =   b.getString("nombre");
         final String datoApellidos =  (String) b.getString("apellidos");
+        final String datoEmail =  (String) b.getString("email");
+        final String datoCont =  (String) b.getString("contra");
 
-        Button button = findViewById(R.id.btnSigEmail);
+        Button button = findViewById(com.fdi.pad.pethouse.R.id.btnSigEdad);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                EditText email = (EditText) findViewById(R.id.textoPersonEmail);
-                email.toString().trim();
 
-                if(email.equals("")){
+                EditText edad = (EditText) findViewById(com.fdi.pad.pethouse.R.id.textoPersonEdad);
+                edad.toString().trim();
+
+                if(edad.equals("")){
 
                     Toast mensaje =
                             Toast.makeText(getApplicationContext(),
@@ -39,12 +41,13 @@ public class regEmail extends AppCompatActivity {
                     mensaje.show();
                 }else{
 
-                    Intent intent = new Intent(regEmail.this, regContr.class);
+                    Intent intent = new Intent(regEdad.this, inicio.class);
                     intent.putExtra("nombre",datoNombre);
                     intent.putExtra("nombre",datoApellidos);
-                    intent.putExtra("email",email.getText());
+                    intent.putExtra("email",datoEmail);
+                    intent.putExtra("contra",datoCont);
+                    intent.putExtra("edad",edad.getText());
                     startActivity(intent);
-
                 }
             }
         });

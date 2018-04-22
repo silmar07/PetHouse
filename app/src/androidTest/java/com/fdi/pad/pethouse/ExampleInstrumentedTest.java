@@ -1,4 +1,4 @@
-package com.example.silvi.pethouse;
+package com.fdi.pad.pethouse;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.silvi.pethouse", appContext.getPackageName());
+        assertEquals("com.fdi.pad.pethouse", appContext.getPackageName());
     }
 }
