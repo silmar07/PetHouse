@@ -1,4 +1,4 @@
-package com.example.silvi.pethouse;
+package com.fdi.pad.pethouse;
 
 import org.junit.Test;
 

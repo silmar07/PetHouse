@@ -1,4 +1,4 @@
-package com.example.silvi.pethouse;
+package com.fdi.pad.pethouse;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +13,7 @@ public class regContr extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reg_contr);
+        setContentView(com.fdi.pad.pethouse.R.layout.activity_reg_contr);
 
 
         //recibimos datos
@@ -24,12 +24,12 @@ public class regContr extends AppCompatActivity {
         final String datoEmail =  (String) b.getString("email");
 
 
-        Button button = findViewById(R.id.btnSigCont);
+        Button button = findViewById(com.fdi.pad.pethouse.R.id.btnSigCont);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                EditText cont = (EditText) findViewById(R.id.textoPersonCont);
+                EditText cont = (EditText) findViewById(com.fdi.pad.pethouse.R.id.textoPersonCont);
                 cont.toString().trim();
 
                 if(cont.equals("")){

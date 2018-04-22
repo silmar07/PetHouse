@@ -1,4 +1,4 @@
-package com.example.silvi.pethouse;
+package com.fdi.pad.pethouse;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +11,9 @@ public class inicio extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio);
+        setContentView(com.fdi.pad.pethouse.R.layout.activity_inicio);
 
-        Button button = findViewById(R.id.btnReg);
+        Button button = findViewById(com.fdi.pad.pethouse.R.id.btnReg);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
