@@ -11,5 +11,7 @@
     <string name="register_button">Register</string>
     <string name="terms">By clicking on Enter or Register, I confirm that I agree with the following PetHouse conditions: [Terms of Service], [Terms and Conditions of Payment of the service], [Privacy policy] and [Policy against animal abandonment].</string>
     <string name="reqEdad">The PetHouse application can only be used by people over 18 years of age.</string>
+    <string name="title_activity_home">home</string>
+    <string name="desEjem">descripcion del perro con enlace a su perfil</string>
 
 </resources>
