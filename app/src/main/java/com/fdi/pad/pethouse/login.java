@@ -47,17 +47,10 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                  cont =  (EditText) findViewById(R.id.password_input);
                 //Toast message = null;
 
-                Toast.makeText(getApplicationContext(),"ENTRAAAAR", Toast.LENGTH_LONG);
-                message.show();
+                if(email.getText().toString().equals("") || cont.getText().toString().equals("") ){
 
-                if(email.equals("") || cont.equals("") ){
-
-                     Toast.makeText(getApplicationContext(),"Debe rellenar todos los cmapos", Toast.LENGTH_LONG);
-                     message.show();
                 }else{
-
-                    Toast.makeText(getApplicationContext(), "Aplicacion", Toast.LENGTH_SHORT);
-                    message.show();
+                    
                 }
                 break;
 
