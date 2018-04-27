@@ -13,6 +13,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     Toast message = null;
     private Button login, enter;
     private EditText email, cont;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
             case R.id.register_button:
 
-                //Toast.makeText(getApplicationContext(),"LOGIIIN", Toast.LENGTH_LONG);
-                //message.show();
-
-                Intent intent = new Intent(login.this, regNombre.class);
+                intent = new Intent(login.this, regNombre.class);
                 startActivity(intent);
 
                 break;
@@ -47,10 +45,17 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                  cont =  (EditText) findViewById(R.id.password_input);
                 //Toast message = null;
 
-                if(email.getText().toString().equals("") || cont.getText().toString().equals("") ){
+                if(!email.getText().toString().equals("") || !cont.getText().toString().equals("") ){
+
+                    intent = new Intent(login.this, home.class);
+                    startActivity(intent);
 
                 }else{
-                    
+
+                    message = Toast.makeText(getApplicationContext(),"Debes rellenar todos los campos", Toast.LENGTH_SHORT);
+
+                    message.show();
+
                 }
                 break;
 
