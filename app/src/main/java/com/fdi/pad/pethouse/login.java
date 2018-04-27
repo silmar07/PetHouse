@@ -33,8 +33,8 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
             case R.id.register_button:
 
-                Toast.makeText(getApplicationContext(),"LOGIIIN", Toast.LENGTH_LONG);
-                message.show();
+                //Toast.makeText(getApplicationContext(),"LOGIIIN", Toast.LENGTH_LONG);
+                //message.show();
 
                 Intent intent = new Intent(login.this, regNombre.class);
                 startActivity(intent);
