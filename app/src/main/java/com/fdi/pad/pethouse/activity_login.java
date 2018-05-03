@@ -59,13 +59,13 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
         my_authentication = FirebaseAuth.getInstance();
 
-        button_register = (Button) findViewById(R.id.register_button);
+        button_register = (Button) findViewById(R.id.buttonRegisterLogin);
         button_register.setOnClickListener(this);
-        button_enter = (Button) findViewById(R.id.enter_button);
+        button_enter = (Button) findViewById(R.id.buttonEnterLogin);
         button_enter.setOnClickListener(this);
 
-        edit_text_email = (EditText) findViewById(R.id.email_input);
-        edit_text_password = (EditText) findViewById(R.id.password_input);
+        edit_text_email = (EditText) findViewById(R.id.editTextEmailLogin);
+        edit_text_password = (EditText) findViewById(R.id.editTextPasswordLogin);
     }
 
     /**
@@ -90,10 +90,10 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.register_button:
+            case R.id.buttonRegisterLogin:
                 RegisterButton();
                 break;
-            case R.id.enter_button:
+            case R.id.buttonEnterLogin:
                 EnterButton();
                 break;
         }
