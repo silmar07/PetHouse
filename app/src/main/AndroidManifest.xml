@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/favicon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login">
+        <activity android:name=".activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +23,7 @@
         <activity android:name=".regEmail" />
         <activity android:name=".regContr" />
         <activity android:name=".regEdad" />
-        <activity android:name=".home"></activity>
+        <activity android:name=".activity_home"></activity>
     </application>
 
 </manifest>

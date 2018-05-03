@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "590223818874-ddacpqtm40kovdfdii9f1p2q5ai90rlb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fdi.pad.pethouse",
+            "certificate_hash": "8a9325530a511d908b0b508618b8e251b51dfd04"
+          }
+        },
+        {
           "client_id": "590223818874-r74lgsak1qe72kls1229umao4j5ii6od.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590223818874-r74lgsak1qe72kls1229umao4j5ii6od.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
