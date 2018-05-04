@@ -12,4 +12,10 @@
     <string name="register_button">Registrar</string>
     <string name="terms">Al pulsar Entrar o Registrarse, confirmo que estoy de acuerdo con las siguientes condiciones de PetHouse : [Condiciones del servicio], [Términos y Condiciones de Pago del servicio], [Política de privacidad] y [Politica contra el abandono animal].</string>
     <string name="reqEdad">La aplicación de PetHouse sólamente puedes ser utilizada por personas mayores de 18 años.</string>
+    <string name="question_name">¿Cuál es tu nombre?</string>
+    <string name="name_registration">Nombre:</string>
+    <string name="name_hint">Nombre.</string>
+    <string name="surname_registration">Apellidos:</string>
+    <string name="surname_hint">Apellidos.</string>
+    <string name="next">Siguiente</string>
 </resources>

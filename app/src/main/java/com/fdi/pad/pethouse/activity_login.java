@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fdi.pad.pethouse.registration_user.activity_registration_name;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -48,8 +49,10 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth my_authentication;
 
     /*--------------------------ETAPAS---------------------------------*/
+
     /**
      * Creación de la actividad.
+     *
      * @param savedInstanceState El estado de la aplicación en un paquete.
      */
     @Override
@@ -83,13 +86,15 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     }
 
     /*--------------------------EVENTOS---------------------------------*/
+
     /**
      * Ejecuta un procedimiento al tocar un elemento de la actividad.
-     * @param v Elemento que ha sido tocado.
+     *
+     * @param view Elemento que ha sido tocado.
      */
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.buttonRegisterLogin:
                 RegisterButton();
                 break;
@@ -100,14 +105,17 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     }
 
     /*--------------------------MÉTODOS PRIVADOS---------------------------------*/
+
     /**
      * Procede a cambiar a la actividad "home".
+     *
      * @param current_user Usuario logueado.
      */
     private void login(FirebaseUser current_user) {
         Intent intent = new Intent(activity_login.this, activity_home.class);
         startActivity(intent);
     }
+
     /**
      * Comienza el flujo del registro de un usuario.
      */
@@ -115,6 +123,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         Intent intent = new Intent(activity_login.this, activity_registration_name.class);
         startActivity(intent);
     }
+
     /**
      * Si los valores son válidos, loguea al usuario.
      */
@@ -147,6 +156,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
     /**
      * Comprueba que los casilleros no estén vacíos.
+     *
      * @return Casilleros correctos
      */
     private boolean validateForm(String email, String password) {

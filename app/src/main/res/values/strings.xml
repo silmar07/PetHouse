@@ -13,5 +13,11 @@
     <string name="reqEdad">The PetHouse application can only be used by people over 18 years of age.</string>
     <string name="title_activity_home">home</string>
     <string name="desEjem">descripcion del perro con enlace a su perfil</string>
+    <string name="question_name">What\'s your name?</string>
+    <string name="name_registration">Name:</string>
+    <string name="name_hint">Name.</string>
+    <string name="surname_registration">Surname:</string>
+    <string name="surname_hint">Surname.</string>
+    <string name="next">Next</string>
 
 </resources>
