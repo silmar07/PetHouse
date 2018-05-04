@@ -25,7 +25,9 @@
         <activity android:name=".registration_user.activity_registration_birthdate" />
         <activity
             android:name=".activity_home"
-            android:label="@string/title_activity_home"></activity>
+            android:label="@string/title_activity_home" />
+        <activity android:name=".modMascota" />
+        <activity android:name=".perfilMascota"></activity>
     </application>
 
 </manifest>
