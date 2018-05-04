@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import com.fdi.pad.pethouse.R;
 
+import java.util.regex.Pattern;
+
 /**
  * Actividad que define el paso del registro donde se introduce la contraseña del usuario.
  */
@@ -92,8 +94,12 @@ public class activity_registration_password extends AppCompatActivity implements
         if (TextUtils.isEmpty(password)) {
             edit_text_password.setError("Requerido.");
             correct = false;
-        } else {
+        } else if(Pattern.matches(".{8,}", password)) {
             edit_text_password.setError(null);
+        }
+        else {
+            edit_text_password.setError("Mínimo 8 caracteres.");
+            correct = false;
         }
         return correct;
     }
