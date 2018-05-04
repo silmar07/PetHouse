@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -165,8 +166,12 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         if (TextUtils.isEmpty(email)) {
             edit_text_email.setError("Requerido.");
             correct = false;
-        } else {
+        } else if (Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             edit_text_email.setError(null);
+        }
+        else {
+            edit_text_email.setError("Formato de correo incorrecto.");
+            correct = false;
         }
 
         if (TextUtils.isEmpty(password)) {
