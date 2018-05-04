@@ -22,4 +22,8 @@
     <string name="question_password">Establece tu contraseña</string>
     <string name="least_password">Debe tener como mínimo 8 caracteres.</string>
     <string name="question_date">¿Cuándo naciste?</string>
+    <string name="select_date">Seleccionar fecha</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_dashboard">Menú</string>
+    <string name="title_notifications">Notificaciones</string>
 </resources>

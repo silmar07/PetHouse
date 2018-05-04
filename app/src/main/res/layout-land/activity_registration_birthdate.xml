@@ -7,6 +7,22 @@
     tools:context="com.fdi.pad.pethouse.registration_user.activity_registration_birthdate">
 
     <Button
+        android:id="@+id/buttonDateRegistrationBirthdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/round_button"
+        android:padding="4dp"
+        android:text="@string/select_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBirthdateRegistrationBirthdate" />
+
+    <Button
         android:id="@+id/buttonNextRegistrationBirthdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,6 +74,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:enabled="false"
         android:ems="10"
         android:hint="@string/date_hint"
         android:inputType="date"

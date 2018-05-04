@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.fdi.pad.pethouse.R;
+
+import java.util.regex.Pattern;
 
 /**
  * Actividad que define el paso del registro donde se introduce el email del usuario.
@@ -86,9 +89,14 @@ public class activity_registration_email extends AppCompatActivity implements Vi
         if (TextUtils.isEmpty(email)) {
             edit_text_email.setError("Requerido.");
             correct = false;
-        } else {
+        } else if (Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             edit_text_email.setError(null);
         }
+        else {
+            edit_text_email.setError("Formato de correo incorrecto.");
+            correct = false;
+        }
+
         return correct;
     }
 }
