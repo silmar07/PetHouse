@@ -3,45 +3,80 @@ package com.fdi.pad.pethouse;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class activity_home extends AppCompatActivity {
+public class activity_home extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private TextView mTextMessage;
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.btnLupa:
-                    return true;
-                case R.id.btnHuella:
-                    return true;
-                case R.id.btnHome:
-                    return true;
-
-                case R.id.btnUsuario:
-                    return true;
-
-                case R.id.btnAjustes:
-                    return true;
-            }
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setOnNavigationItemSelectedListener(this);
     }
 
+    /**
+     * metodo que gestiona el action de lso botones de la barra de navegacion
+     * @param item elitem del menu seleccionado9
+     * @return segun el item devolvemos la clase .java asociado con ese boton y que dicha calse tendra asociada la vista (xml
+     */
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        Fragment fragment = null;
+
+        switch (item.getItemId()) {
+
+            case R.id.btnLupa:
+                fragment = new BusqFragment();
+            break;
+
+            case R.id.btnHuella:
+                fragment = new MascotaFragment();
+            break;
+
+            case R.id.btnHome:
+                fragment = new HomeFragment();
+            break;
+
+            case R.id.btnUsuario:
+                fragment = new UsuarioFragment();
+            break;
+
+            case R.id.btnAjustes:
+                fragment = new AjustesFragment();
+            break;
+        }
+
+        return loadFragment(fragment);
+
+    }
+
+
+    /**
+     * metodo para cargar el fragmento que le pasamos por parametro siempre que no sea null
+     * @param fragment framento que le pasamos desde onNAviga... que es, el que esta asociado al action del boton
+     * @return true si ha sido correcto false si no es correcto
+     */
+    private boolean loadFragment(Fragment fragment) {
+
+        if (fragment != null) {
+
+            getSupportFragmentManager().
+                    beginTransaction().
+                         replace(R.id.fragmentHome,fragment).
+                                commit();
+
+            return true;
+        }
+
+
+        return false;
+    }
 }
