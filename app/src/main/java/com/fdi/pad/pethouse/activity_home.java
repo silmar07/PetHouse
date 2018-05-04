@@ -1,40 +1,47 @@
 package com.fdi.pad.pethouse;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
+import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
+public class activity_home extends AppCompatActivity {
 
-public class activity_home extends AppCompatActivity implements View.OnClickListener {
+    private TextView mTextMessage;
 
-    private Button button_exit;
-    private FirebaseAuth my_authentication;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.btnLupa:
+                    return true;
+                case R.id.btnHuella:
+                    return true;
+                case R.id.btnHome:
+                    return true;
+
+                case R.id.btnUsuario:
+                    return true;
+
+                case R.id.btnAjustes:
+                    return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        my_authentication = FirebaseAuth.getInstance();
-        button_exit = (Button) findViewById(R.id.button_exit);
-        button_exit.setOnClickListener(this);
+        mTextMessage = (TextView) findViewById(R.id.message);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button_exit:
-                ExitButton();
-                break;
-        }
-    }
-
-    private void ExitButton() {
-        my_authentication.signOut();
-        Intent intent = new Intent(activity_home.this, activity_login.class);
-        startActivity(intent);
-    }
 }
