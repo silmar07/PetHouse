@@ -29,7 +29,6 @@ public class activity_registration_name extends AppCompatActivity implements Vie
     private EditText edit_text_surname;
 
     /*--------------------------ETAPAS---------------------------------*/
-
     /**
      * Creación de la actividad.
      *
@@ -48,7 +47,6 @@ public class activity_registration_name extends AppCompatActivity implements Vie
     }
 
     /*--------------------------EVENTOS---------------------------------*/
-
     /**
      * Ejecuta un procedimiento al tocar un elemento de la actividad.
      *
@@ -69,7 +67,6 @@ public class activity_registration_name extends AppCompatActivity implements Vie
     }
 
     /*--------------------------MÉTODOS PRIVADOS---------------------------------*/
-
     /**
      * Comprueba que los casilleros no estén vacíos.
      *

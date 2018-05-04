@@ -7,13 +7,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.fdi.pad.pethouse.R;
+import com.fdi.pad.pethouse.activity_login;
 
-/**
- * Actividad que define el paso del registro donde se introduce el email del usuario.
- */
-public class activity_registration_email extends AppCompatActivity implements View.OnClickListener {
+public class activity_registration_birthdate extends AppCompatActivity implements View.OnClickListener{
     /*------------------------------ATRIBUTOS----------------------------*/
     /**
      * Botón para ir al siguiente paso del registro del usuario.
@@ -22,7 +21,7 @@ public class activity_registration_email extends AppCompatActivity implements Vi
     /**
      * Casillero de texto donde se encuentra el email del usuario.
      */
-    private EditText edit_text_email;
+    private EditText edit_text_birthdate;
     /**
      * Nombre del usuario.
      */
@@ -31,6 +30,14 @@ public class activity_registration_email extends AppCompatActivity implements Vi
      * Apellidos del usuario.
      */
     private String surname;
+    /**
+     * Correo electrónico del usuario.
+     */
+    private String email;
+    /**
+     * Contraseña del usuario.
+     */
+    private String password;
 
     /*--------------------------ETAPAS---------------------------------*/
     /**
@@ -41,18 +48,20 @@ public class activity_registration_email extends AppCompatActivity implements Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration_email);
+        setContentView(R.layout.activity_registration_birthdate);
 
-        button_next = (Button) findViewById(R.id.buttonNextRegistrationEmail);
+        button_next = (Button) findViewById(R.id.buttonNextRegistrationBirthdate);
         button_next.setOnClickListener(this);
 
-        edit_text_email = (EditText) findViewById(R.id.editTextEmailRegistrationEmail);
+        edit_text_birthdate = (EditText) findViewById(R.id.editTextBirthdateRegistrationBirthdate);
 
         /*Recibimos los datos del intent.*/
         Bundle b = getIntent().getExtras();
 
         name = (String) b.getString("name");
         surname = (String) b.getString("surname");
+        email = (String) b.getString("email");
+        password = (String) b.getString("password");
     }
 
     /*--------------------------EVENTOS---------------------------------*/
@@ -63,14 +72,15 @@ public class activity_registration_email extends AppCompatActivity implements Vi
      */
     @Override
     public void onClick(View view) {
-        String email = edit_text_email.getText().toString();
-        if (!validateForm(email)) {
+        String birthdate = edit_text_birthdate.getText().toString();
+        if (!validateForm(birthdate)) {
             return;
         }
-        Intent intent = new Intent(activity_registration_email.this, activity_registration_password.class);
+        Intent intent = new Intent(activity_registration_birthdate.this, activity_login.class);
         intent.putExtra("name", name);
         intent.putExtra("surname", surname);
         intent.putExtra("email", email);
+        intent.putExtra("password", password);
         startActivity(intent);
     }
 
@@ -80,14 +90,14 @@ public class activity_registration_email extends AppCompatActivity implements Vi
      *
      * @return Casilleros correctos
      */
-    private boolean validateForm(String email) {
+    private boolean validateForm(String birthdate) {
         boolean correct = true;
 
-        if (TextUtils.isEmpty(email)) {
-            edit_text_email.setError("Requerido.");
+        if (TextUtils.isEmpty(birthdate)) {
+            edit_text_birthdate.setError("Requerido.");
             correct = false;
         } else {
-            edit_text_email.setError(null);
+            edit_text_birthdate.setError(null);
         }
         return correct;
     }

@@ -21,8 +21,8 @@
         </activity>
         <activity android:name=".registration_user.activity_registration_name" />
         <activity android:name=".registration_user.activity_registration_email" />
-        <activity android:name=".regContr" />
-        <activity android:name=".regEdad" />
+        <activity android:name=".registration_user.activity_registration_password" />
+        <activity android:name=".registration_user.activity_registration_birthdate" />
         <activity android:name=".activity_home"></activity>
     </application>
 

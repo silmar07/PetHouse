@@ -18,4 +18,8 @@
     <string name="surname_registration">Apellidos:</string>
     <string name="surname_hint">Apellidos.</string>
     <string name="next">Siguiente</string>
+    <string name="question_email">¿Qué correo electrónico vas a utilizar?</string>
+    <string name="question_password">Establece tu contraseña</string>
+    <string name="least_password">Debe tener como mínimo 8 caracteres.</string>
+    <string name="question_date">¿Cuándo naciste?</string>
 </resources>
