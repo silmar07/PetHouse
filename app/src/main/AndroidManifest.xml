@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fdi.pad.pethouse">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/favicon"
@@ -9,18 +12,18 @@
         android:roundIcon="@mipmap/favicon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login">
+        <activity android:name=".activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".regNombre" />
+        <activity android:name=".activity_registration_name" />
         <activity android:name=".regEmail" />
         <activity android:name=".regContr" />
         <activity android:name=".regEdad" />
-        <activity android:name=".home"></activity>
+        <activity android:name=".activity_home"></activity>
     </application>
 
 </manifest>
