@@ -3,7 +3,7 @@
     package="com.fdi.pad.pethouse">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -23,7 +23,9 @@
         <activity android:name=".registration_user.activity_registration_email" />
         <activity android:name=".registration_user.activity_registration_password" />
         <activity android:name=".registration_user.activity_registration_birthdate" />
-        <activity android:name=".activity_home"></activity>
+        <activity
+            android:name=".activity_home"
+            android:label="@string/title_activity_home"></activity>
     </application>
 
 </manifest>
