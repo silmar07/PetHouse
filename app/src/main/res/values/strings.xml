@@ -25,5 +25,7 @@
     <string name="question_date">When you were born?</string>
     <string name="date_hint">01/01/2000</string>
     <string name="select_date">Select date</string>
-
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
