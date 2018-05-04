@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".regNombre" />
+        <activity android:name=".activity_registration_name" />
         <activity android:name=".regEmail" />
         <activity android:name=".regContr" />
         <activity android:name=".regEdad" />

@@ -112,7 +112,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
      * Comienza el flujo del registro de un usuario.
      */
     private void RegisterButton() {
-        Intent intent = new Intent(activity_login.this, regNombre.class);
+        Intent intent = new Intent(activity_login.this, activity_registration_name.class);
         startActivity(intent);
     }
     /**

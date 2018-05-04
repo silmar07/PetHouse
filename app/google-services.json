@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "590223818874-132so3r8jr6k3jra22pri09jk7r3r923.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fdi.pad.pethouse",
+            "certificate_hash": "60aa6216ed98679ab63f51be2cd9386e969cd9e2"
+          }
+        },
+        {
           "client_id": "590223818874-ddacpqtm40kovdfdii9f1p2q5ai90rlb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

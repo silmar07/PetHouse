@@ -8,12 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class regNombre extends AppCompatActivity {
+public class activity_registration_name extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.fdi.pad.pethouse.R.layout.activity_reg_nombre);
+        setContentView(com.fdi.pad.pethouse.R.layout.activity_registration_name);
 
 
         Button button = findViewById(com.fdi.pad.pethouse.R.id.btnSigNom);
@@ -37,7 +37,7 @@ public class regNombre extends AppCompatActivity {
 
             }else{
 
-                Intent intent = new Intent(regNombre.this, regEmail.class);
+                Intent intent = new Intent(activity_registration_name.this, regEmail.class);
                 intent.putExtra("nombre",nom.getText());
                 intent.putExtra("apellidos",ape.getText());
                 startActivity(intent);
