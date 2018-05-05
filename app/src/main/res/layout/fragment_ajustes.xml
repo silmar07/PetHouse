@@ -23,6 +23,7 @@
             android:text="Notificaciones:            "
             />
 
+<!--
         <Button
             android:id="@+id/btnInfor"
             android:layout_width="match_parent"
@@ -43,7 +44,7 @@
             android:layout_marginLeft="20dp"
             android:textAlignment="textStart"
             android:gravity="start" />
-
+    -->
     </LinearLayout>
 
 
