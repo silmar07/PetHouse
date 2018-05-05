@@ -29,7 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textSize="20dp"
-            android:layout_marginLeft="20dp"
             android:text="Nombre:" />
 
 
@@ -38,7 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
             android:textSize="20dp"
             android:text="Especie:" />
 
@@ -48,7 +46,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
             android:textSize="20dp"
             android:text="Raza" />
 
@@ -57,7 +54,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
             android:textSize="20dp"
             android:text="Edad:" />
 
@@ -66,7 +62,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
             android:textSize="20dp"
             android:text="Esterilización:" />
 
@@ -76,7 +71,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
             android:textSize="20dp"
             android:text="Datos médicos:" />
 
@@ -85,7 +79,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
             android:textSize="20dp"
             android:text="Otros datos:" />
 

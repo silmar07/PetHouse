@@ -2,15 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="140dp"
-        android:layout_marginRight="140dp"
-        android:layout_marginTop="253dp"
-        android:text="ajustes" />
+        android:orientation="vertical">
+
+        <Switch
+            android:id="@+id/switchNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:text="Notificaciones:            "
+            />
+
+        <Button
+            android:id="@+id/btnInfor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Informacion"
+            android:background=""
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:textAlignment="textStart"
+            android:gravity="start" />
+
+        <Button
+            android:id="@+id/btnCerrarSesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cerrar Sesión"
+            android:background=""
+            android:layout_marginLeft="20dp"
+            android:textAlignment="textStart"
+            android:gravity="start" />
+
+    </LinearLayout>
+
+
+
 </RelativeLayout>

@@ -27,7 +27,8 @@
             android:name=".activity_home"
             android:label="@string/title_activity_home" />
         <activity android:name=".modMascota" />
-        <activity android:name=".perfilMascota"></activity>
+        <activity android:name=".perfilMascota" />
+        <activity android:name=".InforApp"></activity>
     </application>
 
 </manifest>
