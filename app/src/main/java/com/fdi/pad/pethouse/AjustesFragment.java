@@ -27,7 +27,7 @@ public class AjustesFragment extends Fragment {
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
 
-
+/*
         //eventos de los textView
         infor = (Button) getView().findViewById(R.id.btnInfor);
         cerrar = (Button) getView().findViewById(R.id.btnCerrarSesion);
@@ -48,6 +48,7 @@ public class AjustesFragment extends Fragment {
 
             }
         });
+        */
     }
 
 }
