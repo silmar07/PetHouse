@@ -1,19 +1,39 @@
 package com.fdi.pad.pethouse.entities;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 public class User {
-    private String uid;
     private String name;
     private String surname;
+    private String birthdate;
 
-    private DatabaseReference db_user = FirebaseDatabase.getInstance().getReference("users");
+    public User() {}
 
-    public User() {};
-    public User(String uid, String name, String surname){
-        this.uid = uid;
+    public User(String name, String surname, String birthdate){
         this.name = name;
         this.surname = surname;
+        this.birthdate = birthdate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
     }
 }
