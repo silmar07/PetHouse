@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btnLupa"
+        android:icon="@drawable/lupa"
+        android:title="Busqueda"/>
+
+    <item
+        android:id="@+id/btnHuella"
+        android:icon="@drawable/huella"
+        android:title="Mascotas" />
+
+    <item
+        android:id="@+id/btnHome"
+        android:icon="@drawable/casa"
+        android:title="Home"
+        android:visible="true"/>
+
+    <item
+        android:id="@+id/btnUsuario"
+        android:icon="@drawable/usuario"
+        android:title="Perfil" />
+
+    <item
+        android:id="@+id/btnAjustes"
+        android:icon="@drawable/ajustes"
+        android:title="Ajustes" />
+
+</menu>
