@@ -60,7 +60,7 @@ public class MascotaFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                Intent intent = new Intent(getActivity(),perfilMascota.class);
+                //Intent intent = new Intent(getActivity(),perfilMascota.class);
                 //pasamos el id de  las mascota
                 //intent.putExtra("idMas", position);
                 //startActivity(intent);

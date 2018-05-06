@@ -11,13 +11,12 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-/**
- * Created by silvi on 4/5/18.
- */
 
 public class AjustesFragment extends Fragment implements View.OnClickListener {
 
     private Button button_exit;
+    private Button button_information;
+
 
     private FirebaseAuth my_authentication;
     @Nullable
@@ -32,13 +31,24 @@ public class AjustesFragment extends Fragment implements View.OnClickListener {
         button_exit = (Button) getView().findViewById(R.id.buttonExit);
         button_exit.setOnClickListener(this);
 
+        button_information = (Button) getView().findViewById(R.id.buttonInformation);
+        button_information.setOnClickListener(this);
+
         my_authentication = FirebaseAuth.getInstance();
     }
 
     @Override
     public void onClick(View v) {
-        my_authentication.signOut();
-        Intent intent = new Intent(getActivity(),activity_login.class);
-        startActivity(intent);
+        switch (v.getId()){
+            case R.id.buttonExit: {
+                my_authentication.signOut();
+                Intent intent = new Intent(getActivity(),activity_login.class);
+                startActivity(intent);
+            } break;
+            case R.id.buttonInformation: {
+                Intent intent = new Intent(getActivity(),InforApp.class);
+                startActivity(intent);
+            }
+        }
     }
 }
