@@ -16,20 +16,20 @@ import android.widget.Toast;
 
 import com.fdi.pad.pethouse.R;
 import com.fdi.pad.pethouse.activity_login;
+import com.fdi.pad.pethouse.entities.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.chrono.ChronoLocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class activity_registration_birthdate extends AppCompatActivity implements View.OnClickListener{
     /*------------------------------ATRIBUTOS----------------------------*/
@@ -77,6 +77,7 @@ public class activity_registration_birthdate extends AppCompatActivity implement
      * Autencicador de la aplicación dado por la tecnología FireBase.
      */
     private FirebaseAuth my_authentication;
+    private DatabaseReference database;
 
 
     /*--------------------------ETAPAS---------------------------------*/
@@ -91,6 +92,7 @@ public class activity_registration_birthdate extends AppCompatActivity implement
         setContentView(R.layout.activity_registration_birthdate);
 
         my_authentication = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance().getReference();
 
         button_next = (Button) findViewById(R.id.buttonNextRegistrationBirthdate);
         button_next.setOnClickListener(this);
@@ -204,7 +206,7 @@ public class activity_registration_birthdate extends AppCompatActivity implement
     }
 
     private void NextButton() {
-        String birthdate = edit_text_birthdate.getText().toString();
+        final String birthdate = edit_text_birthdate.getText().toString();
         if (!validateForm(birthdate)) {
             return;
         }
@@ -215,6 +217,9 @@ public class activity_registration_birthdate extends AppCompatActivity implement
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user_session = my_authentication.getCurrentUser();
+                            User user = new User(name, surname, birthdate);
+
+                            database.child("users").child(user_session.getUid()).setValue(user);
                             Intent intent = new Intent(activity_registration_birthdate.this, activity_login.class);
                             startActivity(intent);
                         } else {
