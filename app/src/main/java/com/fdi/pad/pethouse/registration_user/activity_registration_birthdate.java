@@ -214,6 +214,7 @@ public class activity_registration_birthdate extends AppCompatActivity implement
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            FirebaseUser user_session = my_authentication.getCurrentUser();
                             Intent intent = new Intent(activity_registration_birthdate.this, activity_login.class);
                             startActivity(intent);
                         } else {

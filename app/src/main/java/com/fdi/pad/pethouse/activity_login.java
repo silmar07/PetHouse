@@ -18,6 +18,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Map;
 
 /**
  * Actividad que define la pantalla inicial de login.
@@ -78,6 +82,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onStart() {
         super.onStart();
+        DatabaseReference root_db = FirebaseDatabase.getInstance().getReference();
+
         /*Comprobamos si hay algún usuario que ya ha iniciado la sesión.*/
         FirebaseUser current_user = my_authentication.getCurrentUser();
         /*En caso de que se haya iniciado, se procede a mostrar la pantalla principal.*/

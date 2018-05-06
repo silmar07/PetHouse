@@ -1,5 +1,6 @@
 package com.fdi.pad.pethouse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,16 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.content.Intent;
 
-/**
- * Created by silvi on 4/5/18.
- */
+import com.google.firebase.auth.FirebaseAuth;
 
-public class AjustesFragment extends Fragment {
 
-    private Button infor, cerrar;
+public class AjustesFragment extends Fragment implements View.OnClickListener {
 
+    private Button button_exit;
+    private Button button_information;
+
+
+    private FirebaseAuth my_authentication;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -26,29 +28,27 @@ public class AjustesFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
+        button_exit = (Button) getView().findViewById(R.id.buttonExit);
+        button_exit.setOnClickListener(this);
 
-/*
-        //eventos de los textView
-        infor = (Button) getView().findViewById(R.id.btnInfor);
-        cerrar = (Button) getView().findViewById(R.id.btnCerrarSesion);
+        button_information = (Button) getView().findViewById(R.id.buttonInformation);
+        button_information.setOnClickListener(this);
 
-        infor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getActivity(),InforApp.class);
-                startActivity(intent);
-
-            }
-        });
-
-        cerrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        */
+        my_authentication = FirebaseAuth.getInstance();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.buttonExit: {
+                my_authentication.signOut();
+                Intent intent = new Intent(getActivity(),activity_login.class);
+                startActivity(intent);
+            } break;
+            case R.id.buttonInformation: {
+                Intent intent = new Intent(getActivity(),InforApp.class);
+                startActivity(intent);
+            }
+        }
+    }
 }
