@@ -30,4 +30,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_mod_mascota">modMascota</string>
     <string name="exit">Exit</string>
+    <string name="birthdate">Birthdate:</string>
+    <string name="birthdate_default">01/01/1990</string>
 </resources>

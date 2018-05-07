@@ -27,4 +27,6 @@
     <string name="title_dashboard">Menú</string>
     <string name="title_notifications">Notificaciones</string>
     <string name="exit">Salir</string>
+    <string name="birthdate">Fecha de nacimiento:</string>
+    <string name="birthdate_default">01/01/1990</string>
 </resources>

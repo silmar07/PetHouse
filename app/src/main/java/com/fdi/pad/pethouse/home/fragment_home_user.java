@@ -26,6 +26,7 @@ public class fragment_home_user extends Fragment {
     private static final String TAG = "Home User";
     private TextView user_name;
     private FirebaseAuth my_authentication;
+    private TextView user_birthdate;
 
     @Nullable
     @Override
@@ -36,6 +37,7 @@ public class fragment_home_user extends Fragment {
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
         user_name = (TextView) getView().findViewById(R.id.textViewHomeUserName);
+        user_birthdate = (TextView) getView().findViewById(R.id.textViewHomeUserBirthdate);
 
         my_authentication = FirebaseAuth.getInstance();
         FirebaseDatabase.getInstance().getReference("users").child(my_authentication.getCurrentUser().getUid())
@@ -55,5 +57,6 @@ public class fragment_home_user extends Fragment {
 
     private void updateUI(User user){
         user_name.setText(user.getName() + " " + user.getSurname());
+        user_birthdate.setText(user.getBirthdate());
     }
 }
