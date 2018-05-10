@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.fdi.pad.pethouse.home.FragmentHomeUser;
+import com.fdi.pad.pethouse.home.fragment_home_user;
 
 public class activity_home extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -48,7 +48,7 @@ public class activity_home extends AppCompatActivity implements BottomNavigation
             break;
 
             case R.id.btnUsuario:
-                fragment = new FragmentHomeUser();
+                fragment = new fragment_home_user();
             break;
 
             case R.id.btnAjustes:
