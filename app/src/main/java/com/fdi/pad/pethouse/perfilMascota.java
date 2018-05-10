@@ -19,7 +19,7 @@ public class perfilMascota extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         //id = (int) b.getInt("idMas");
 
-        Button mod = findViewById(R.id.btnMasGuardar);
+        Button mod = findViewById(R.id.btnModMas);
         mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
