@@ -24,6 +24,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -78,6 +80,7 @@ public class activity_registration_birthdate extends AppCompatActivity implement
      */
     private FirebaseAuth my_authentication;
     private DatabaseReference database;
+    private StorageReference storage;
 
 
     /*--------------------------ETAPAS---------------------------------*/
@@ -93,6 +96,7 @@ public class activity_registration_birthdate extends AppCompatActivity implement
 
         my_authentication = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference();
+        storage = FirebaseStorage.getInstance().getReference();
 
         button_next = (Button) findViewById(R.id.buttonNextRegistrationBirthdate);
         button_next.setOnClickListener(this);
