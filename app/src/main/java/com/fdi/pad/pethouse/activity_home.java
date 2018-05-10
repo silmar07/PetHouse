@@ -13,13 +13,28 @@ import com.fdi.pad.pethouse.home.fragment_home_user;
 public class activity_home extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private TextView mTextMessage;
+    private BusqFragment bsqFragment;
+    private MascotaFragment masFragment;
+    private HomeFragment homeFragment;
+    private fragment_home_user homeUserFragment;
+    private AjustesFragment ajsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //Creamos los fragmentos
+        bsqFragment = new BusqFragment();
+        masFragment = new MascotaFragment();
+        homeFragment = new HomeFragment();
+        homeUserFragment = new fragment_home_user();
+        ajsFragment = new AjustesFragment();
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        loadFragment(homeFragment);
+        navigation.setSelectedItemId(R.id.btnHome);
+
         navigation.setOnNavigationItemSelectedListener(this);
     }
 
@@ -36,23 +51,23 @@ public class activity_home extends AppCompatActivity implements BottomNavigation
         switch (item.getItemId()) {
 
             case R.id.btnLupa:
-                fragment = new BusqFragment();
+                fragment = bsqFragment;
             break;
 
             case R.id.btnHuella:
-                fragment = new MascotaFragment();
+                fragment = masFragment;
             break;
 
             case R.id.btnHome:
-                fragment = new HomeFragment();
+                fragment = homeFragment;
             break;
 
             case R.id.btnUsuario:
-                fragment = new fragment_home_user();
+                fragment = homeUserFragment;
             break;
 
             case R.id.btnAjustes:
-                fragment = new AjustesFragment();
+                fragment = ajsFragment;
             break;
         }
 
