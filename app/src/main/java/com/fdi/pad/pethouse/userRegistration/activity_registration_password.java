@@ -1,4 +1,4 @@
-package com.fdi.pad.pethouse.registrationUser;
+package com.fdi.pad.pethouse.userRegistration;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

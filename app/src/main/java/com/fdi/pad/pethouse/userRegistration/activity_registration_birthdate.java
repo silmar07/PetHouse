@@ -1,4 +1,4 @@
-package com.fdi.pad.pethouse.registrationUser;
+package com.fdi.pad.pethouse.userRegistration;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -221,7 +221,7 @@ public class activity_registration_birthdate extends AppCompatActivity implement
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user_session = my_authentication.getCurrentUser();
-                            User user = new User(name, surname, birthdate);
+                            User user = new User(name, surname, email, birthdate);
 
                             database.child("users").child(user_session.getUid()).setValue(user);
                             Intent intent = new Intent(activity_registration_birthdate.this, activity_login.class);

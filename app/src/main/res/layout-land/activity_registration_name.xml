@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fdi.pad.pethouse.registrationUser.ActivityRegistrationName">
+    tools:context="com.fdi.pad.pethouse.userRegistration.ActivityRegistrationName">
 
     <TextView
         android:id="@+id/textViewSurnameRegistrationName"

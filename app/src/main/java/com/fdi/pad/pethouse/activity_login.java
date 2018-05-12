@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.fdi.pad.pethouse.registrationUser.ActivityRegistrationName;
+import com.fdi.pad.pethouse.userRegistration.ActivityRegistrationName;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
