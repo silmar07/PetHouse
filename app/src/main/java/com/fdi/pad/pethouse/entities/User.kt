@@ -6,7 +6,8 @@ class User {
     var birthdate: String? = null
     var address: String? = null
 
-    constructor() {}
+    @Suppress("unused")
+    constructor()
 
     constructor(name: String, surname: String, birthdate: String){
         this.name = name

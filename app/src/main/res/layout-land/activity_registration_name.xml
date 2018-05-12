@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fdi.pad.pethouse.registration_user.activity_registration_name">
+    tools:context="com.fdi.pad.pethouse.registrationUser.ActivityRegistrationName">
 
     <TextView
         android:id="@+id/textViewSurnameRegistrationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/surname_registration"
         android:textColor="@color/colorSecondaryText"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNameRegistrationName"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameRegistrationName" />
 
     <Button
         android:id="@+id/buttonNextRegistrationName"

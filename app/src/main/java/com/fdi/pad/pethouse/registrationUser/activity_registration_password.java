@@ -1,10 +1,9 @@
-package com.fdi.pad.pethouse.registration_user;
+package com.fdi.pad.pethouse.registrationUser;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +13,9 @@ import com.fdi.pad.pethouse.R;
 import java.util.regex.Pattern;
 
 /**
- * Actividad que define el paso del registro donde se introduce el email del usuario.
+ * Actividad que define el paso del registro donde se introduce la contraseña del usuario.
  */
-public class activity_registration_email extends AppCompatActivity implements View.OnClickListener {
+public class activity_registration_password extends AppCompatActivity implements View.OnClickListener {
     /*------------------------------ATRIBUTOS----------------------------*/
     /**
      * Botón para ir al siguiente paso del registro del usuario.
@@ -25,7 +24,7 @@ public class activity_registration_email extends AppCompatActivity implements Vi
     /**
      * Casillero de texto donde se encuentra el email del usuario.
      */
-    private EditText edit_text_email;
+    private EditText edit_text_password;
     /**
      * Nombre del usuario.
      */
@@ -34,6 +33,10 @@ public class activity_registration_email extends AppCompatActivity implements Vi
      * Apellidos del usuario.
      */
     private String surname;
+    /**
+     * Correo electrónico del usuario.
+     */
+    private String email;
 
     /*--------------------------ETAPAS---------------------------------*/
     /**
@@ -44,18 +47,19 @@ public class activity_registration_email extends AppCompatActivity implements Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration_email);
+        setContentView(R.layout.activity_registration_password);
 
-        button_next = (Button) findViewById(R.id.buttonNextRegistrationEmail);
+        button_next = (Button) findViewById(R.id.buttonNextRegistrationPassword);
         button_next.setOnClickListener(this);
 
-        edit_text_email = (EditText) findViewById(R.id.editTextEmailRegistrationEmail);
+        edit_text_password = (EditText) findViewById(R.id.editTextPasswordRegistrationPassword);
 
         /*Recibimos los datos del intent.*/
         Bundle b = getIntent().getExtras();
 
         name = (String) b.getString("name");
         surname = (String) b.getString("surname");
+        email = (String) b.getString("email");
     }
 
     /*--------------------------EVENTOS---------------------------------*/
@@ -66,14 +70,15 @@ public class activity_registration_email extends AppCompatActivity implements Vi
      */
     @Override
     public void onClick(View view) {
-        String email = edit_text_email.getText().toString();
-        if (!validateForm(email)) {
+        String password = edit_text_password.getText().toString();
+        if (!validateForm(password)) {
             return;
         }
-        Intent intent = new Intent(activity_registration_email.this, activity_registration_password.class);
+        Intent intent = new Intent(activity_registration_password.this, activity_registration_birthdate.class);
         intent.putExtra("name", name);
         intent.putExtra("surname", surname);
         intent.putExtra("email", email);
+        intent.putExtra("password", password);
         startActivity(intent);
     }
 
@@ -83,20 +88,19 @@ public class activity_registration_email extends AppCompatActivity implements Vi
      *
      * @return Casilleros correctos
      */
-    private boolean validateForm(String email) {
+    private boolean validateForm(String password) {
         boolean correct = true;
 
-        if (TextUtils.isEmpty(email)) {
-            edit_text_email.setError("Requerido.");
+        if (TextUtils.isEmpty(password)) {
+            edit_text_password.setError("Requerido.");
             correct = false;
-        } else if (Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            edit_text_email.setError(null);
+        } else if(Pattern.matches(".{8,}", password)) {
+            edit_text_password.setError(null);
         }
         else {
-            edit_text_email.setError("Formato de correo incorrecto.");
+            edit_text_password.setError("Mínimo 8 caracteres.");
             correct = false;
         }
-
         return correct;
     }
 }

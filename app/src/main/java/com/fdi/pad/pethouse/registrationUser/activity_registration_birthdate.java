@@ -1,4 +1,4 @@
-package com.fdi.pad.pethouse.registration_user;
+package com.fdi.pad.pethouse.registrationUser;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
