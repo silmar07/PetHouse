@@ -7,13 +7,20 @@ import android.text.TextUtils
 import com.fdi.pad.pethouse.R
 import kotlinx.android.synthetic.main.activity_registration_name.*
 
-const val nameUserRegistration : String = "name"
-const val surnameUserRegistration : String = "surname"
-
 /**
  * Actividad que define el paso del registro donde se introduce el nombre del usuario.
  */
 class ActivityRegistrationName : AppCompatActivity() {
+
+    /*------------------------------CONSTANTES---------------------------*/
+    /**
+     * Parámetro para determinar el nombre del usuario.
+     */
+    private val nameUser = "name"
+    /**
+     * Parámetro para determinar los apellidos del usuario.
+     */
+    private val surnameUser  = "surname"
 
     /*--------------------------ETAPAS---------------------------------*/
     /**
@@ -25,7 +32,7 @@ class ActivityRegistrationName : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration_name)
 
-        buttonNextRegistrationName.setOnClickListener { buttonNext() }
+        buttonNext.setOnClickListener { buttonNext() }
     }
 
     /*--------------------------MÉTODOS PRIVADOS---------------------------------*/
@@ -34,13 +41,13 @@ class ActivityRegistrationName : AppCompatActivity() {
      */
     private fun buttonNext() {
         /*Cogemos los valores de los casilleros.*/
-        val name = editTextNameRegistrationName.text.toString()
-        val surname = editTextSurnameRegistrationName.text.toString()
+        val name = editTextName.text.toString()
+        val surname = editTextSurname.text.toString()
         if (!validateForm(name, surname)) return
 
         val intent = Intent(this@ActivityRegistrationName, ActivityRegistrationEmail::class.java)
-        intent.putExtra(nameUserRegistration, name)
-        intent.putExtra(surnameUserRegistration, surname)
+        intent.putExtra(nameUser, name)
+        intent.putExtra(surnameUser, surname)
         startActivity(intent)
     }
 
@@ -54,14 +61,14 @@ class ActivityRegistrationName : AppCompatActivity() {
         var correctSurname = true
 
         if (TextUtils.isEmpty(name)) {
-            editTextNameRegistrationName.error = "Requerido."
+            editTextName.error = getString(R.string.required_field)
             correctName = false
-        } else editTextNameRegistrationName.error = null
+        } else editTextName.error = null
 
         if (TextUtils.isEmpty(surname)) {
-            editTextSurnameRegistrationName.error = "Requerido."
+            editTextSurname.error = getString(R.string.required_field)
             correctSurname = false
-        } else editTextSurnameRegistrationName.error = null
+        } else editTextSurname.error = null
 
         return correctName && correctSurname
     }

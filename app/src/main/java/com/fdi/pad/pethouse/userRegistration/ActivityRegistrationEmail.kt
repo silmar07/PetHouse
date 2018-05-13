@@ -11,13 +11,32 @@ import com.fdi.pad.pethouse.entities.User
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_registration_email.*
 
-const val emailUserRegistration = "email"
-const val databaseUsers = "users"
-
 /**
  * Actividad que define el paso del registro donde se introduce el email del usuario.
  */
 class ActivityRegistrationEmail : AppCompatActivity() {
+    /*------------------------------CONSTANTES---------------------------*/
+    /**
+     * Parámetro para determinar la base de datos de los usuarios.
+     */
+    private val databaseUsers = "users"
+    /**
+     * Parámetro para determinar el uuid del usuario.
+     */
+    private val uuidUser = "uuid"
+    /**
+     * Parámetro para determinar el nombre del usuario.
+     */
+    private val nameUser = "name"
+    /**
+     * Parámetro para determinar los apellidos del usuario.
+     */
+    private val surnameUser  = "surname"
+    /**
+     * Parámetro para determinar el correo electrónico del usuario.
+     */
+    private val emailUser = "email"
+
     /*------------------------------ATRIBUTOS----------------------------*/
     /**
      * Nombre del usuario.
@@ -44,11 +63,11 @@ class ActivityRegistrationEmail : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().reference
 
-        buttonNextRegistrationEmail.setOnClickListener { buttonNext() }
+        buttonNext.setOnClickListener { buttonNext() }
 
         /*Recibimos los datos del intent.*/
-        name = intent.getStringExtra(nameUserRegistration)
-        surname = intent.getStringExtra(surnameUserRegistration)
+        name = intent.getStringExtra(nameUser)
+        surname = intent.getStringExtra(surnameUser)
     }
 
     /*--------------------------MÉTODOS PRIVADOS---------------------------------*/
@@ -56,9 +75,10 @@ class ActivityRegistrationEmail : AppCompatActivity() {
      * Valida el email y envía a la siguiente pantalla.
      */
     private fun buttonNext() {
-        val email = editTextEmailRegistrationEmail.text.toString()
+        val email = editTextEmail.text.toString()
 
-        if (!validateForm(email)) return else checkUser(email)
+        if (!validateForm(email)) return
+        else checkUser(email)
     }
 
     /**
@@ -72,14 +92,14 @@ class ActivityRegistrationEmail : AppCompatActivity() {
 
         when {
             TextUtils.isEmpty(email) -> {
-                editTextEmailRegistrationEmail.error = "Requerido."
+                editTextEmail.error = getString(R.string.required_field)
                 correctEmail = false
             }
 
-            Patterns.EMAIL_ADDRESS.matcher(email).matches() -> editTextEmailRegistrationEmail.error = null
+            Patterns.EMAIL_ADDRESS.matcher(email).matches() -> editTextEmail.error = null
 
             else -> {
-                editTextEmailRegistrationEmail.error = "Formato de correo incorrecto."
+                editTextEmail.error = getString(R.string.incorrect_email_format)
                 correctEmail = false
             }
         }
@@ -99,16 +119,18 @@ class ActivityRegistrationEmail : AppCompatActivity() {
             override fun onDataChange(p0: DataSnapshot?) {
                 /*Cogemos todos los usuarios de la apliación*/
                 val iteratorUser: MutableIterable<DataSnapshot>? = p0?.children
+                var user: User? = null
 
                 /*Buscamos el email entre los usuarios*/
-                while (iteratorUser!!.iterator().hasNext() && !exist) {
+                while (!exist && iteratorUser!!.iterator().hasNext()) {
                     val data = iteratorUser.iterator().next()
-                    val user = data.getValue(User::class.java)
+                    user = data.getValue(User::class.java)!!
 
-                    if (user!!.email.equals(email)) exist = true
+                    if (user.email.equals(email)) exist = true
                 }
 
-                if (exist) existUser(email) else noExistUser(email)
+                if (exist) existUser(user?.uuid!!)
+                else noExistUser(email)
             }
         })
     }
@@ -116,10 +138,12 @@ class ActivityRegistrationEmail : AppCompatActivity() {
     /**
      * Continua con la inicialización del usuario existente.
      *
-     * @param email Correo electrónico del usuario.
+     * @param uuid Identificador del usuario existente.
      */
-    private fun existUser(email: String) {
-
+    private fun existUser(uuid: String) {
+        val intent = Intent(this, ActivityRegistrationLogin::class.java)
+        intent.putExtra(uuidUser, uuid)
+        startActivity(intent)
     }
 
     /**
@@ -128,10 +152,10 @@ class ActivityRegistrationEmail : AppCompatActivity() {
      * @param email Correo electrónico del usuario.
      */
     private fun noExistUser(email: String) {
-        val intent = Intent(this, activity_registration_password::class.java)
-        intent.putExtra(nameUserRegistration, name)
-        intent.putExtra(surnameUserRegistration, surname)
-        intent.putExtra(emailUserRegistration, email)
+        val intent = Intent(this, ActivityRegistrationPassword::class.java)
+        intent.putExtra(nameUser, name)
+        intent.putExtra(surnameUser, surname)
+        intent.putExtra(emailUser, email)
         startActivity(intent)
     }
 }

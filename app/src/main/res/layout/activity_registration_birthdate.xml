@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fdi.pad.pethouse.userRegistration.activity_registration_birthdate">
+    tools:context="com.fdi.pad.pethouse.userRegistration.ActivityRegistrationBirthDate">
 
     <Button
         android:id="@+id/buttonNextRegistrationBirthdate"
@@ -18,23 +18,6 @@
         android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextBirthdateRegistrationBirthdate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:clickable="true"
-        android:enabled="false"
-        android:ems="10"
-        android:hint="@string/date_hint"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBirthdateRegistrationBirthdate" />
 
     <TextView
         android:id="@+id/textViewBirthdateRegistrationBirthdate"
@@ -62,7 +45,7 @@
         android:gravity="center"
         android:text="@string/question_date"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -75,12 +58,29 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/round_button"
         android:padding="4dp"
         android:text="@string/select_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBirthdateRegistrationBirthdate" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewBirthdateRegistrationDate" />
+
+    <TextView
+        android:id="@+id/textViewBirthdateRegistrationDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/birthdate_default"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBirthdateRegistrationBirthdate" />
 
 </android.support.constraint.ConstraintLayout>

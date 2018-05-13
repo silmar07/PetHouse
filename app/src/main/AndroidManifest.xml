@@ -26,8 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".userRegistration.activity_registration_password" />
-        <activity android:name=".userRegistration.activity_registration_birthdate" />
+        <activity android:name=".userRegistration.ActivityRegistrationBirthDate" />
         <activity
             android:name=".activity_home"
             android:label="@string/title_activity_home" />
@@ -37,6 +36,7 @@
         <activity android:name=".userRegistration.ActivityRegistrationName" />
         <activity android:name=".userRegistration.ActivityRegistrationEmail" />
         <activity android:name=".userRegistration.ActivityRegistrationLogin" />
+        <activity android:name=".userRegistration.ActivityRegistrationPassword" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
