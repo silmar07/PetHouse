@@ -6,11 +6,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!--MAP-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
-    <uses-permission android:name="android.permission.READ_LOGS"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -26,16 +26,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".registration_user.activity_registration_name" />
-        <activity android:name=".registration_user.activity_registration_email" />
-        <activity android:name=".registration_user.activity_registration_password" />
-        <activity android:name=".registration_user.activity_registration_birthdate" />
+        <activity android:name=".userRegistration.ActivityRegistrationBirthDate" />
         <activity
             android:name=".activity_home"
             android:label="@string/title_activity_home" />
         <activity android:name=".modMascota" />
         <activity android:name=".perfilMascota" />
         <activity android:name=".InforApp"></activity>
+        <activity android:name=".userRegistration.ActivityRegistrationName" />
+        <activity android:name=".userRegistration.ActivityRegistrationEmail" />
+        <activity android:name=".userRegistration.ActivityRegistrationLogin" />
+        <activity android:name=".userRegistration.ActivityRegistrationPassword" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

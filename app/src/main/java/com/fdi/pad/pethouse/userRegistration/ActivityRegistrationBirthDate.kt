@@ -1,0 +1,224 @@
+package com.fdi.pad.pethouse.userRegistration
+
+import android.app.DatePickerDialog
+import android.content.Intent
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils
+import android.widget.Toast
+import com.fdi.pad.pethouse.R
+import com.fdi.pad.pethouse.activity_login
+import com.fdi.pad.pethouse.entities.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import com.google.firebase.storage.*
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlinx.android.synthetic.main.activity_registration_birthdate.*
+
+/**
+ * Actividad que define el paso del registro donde se introduce la fecha de nacimiento del usuario.
+ */
+class ActivityRegistrationBirthDate : AppCompatActivity() {
+    /*------------------------------CONSTANTES---------------------------*/
+    /**
+     * Parámetro para determinar la base de datos de los usuarios.
+     */
+    private val databaseUsers = "users"
+    /**
+     * Parámetro para determinar el nombre del usuario.
+     */
+    private val nameUser = "name"
+    /**
+     * Parámetro para determinar los apellidos del usuario.
+     */
+    private val surnameUser  = "surname"
+    /**
+     * Parámetro para determinar el correo electrónico del usuario.
+     */
+    private val emailUser = "email"
+    /**
+     * Parámetro para determinar la contraseña del usuario.
+     */
+    private val passwordUser = "password"
+    /**
+     * Formato de la fecha.
+     */
+    private val dateFormat = "dd/MM/yyyy"
+
+    /*------------------------------ATRIBUTOS----------------------------*/
+    /**
+     * Nombre del usuario.
+     */
+    private var name: String? = null
+    /**
+     * Apellidos del usuario.
+     */
+    private var surname: String? = null
+    /**
+     * Correo electrónico del usuario.
+     */
+    private var email: String? = null
+    /**
+     * Contraseña del usuario.
+     */
+    private var password: String? = null
+
+    /**
+     * Año de nacimiento del usuario.
+     */
+    private var yearBirthDate: Int = 0
+    /**
+     * Mes de nacimiento del usuario.
+     */
+    private var monthBirthDate: Int = 0
+    /**
+     * Día de nacimiento del usuario.
+     */
+    private var dayBirthDate: Int = 0
+
+    /**
+     * Autentificador de la aplicación dado por la tecnología FireBase.
+     */
+    private var authentication: FirebaseAuth? = null
+    /**
+     * Base de datos de la aplicación dada por la tecnología FireBase.
+     */
+    private var database: DatabaseReference? = null
+    /**
+     * Almacenaje en la nube de la aplicación dada por la tecnología Firebase.
+     */
+    private var storage: StorageReference? = null
+
+    /**
+     * Calendario de la aplicación.
+     */
+    private var calendar: Calendar? = null
+    /**
+     * Evento que actualizará la fecha seleccionada por el DatePickerDialog
+     */
+    private var dateSetListener: DatePickerDialog.OnDateSetListener? = null
+
+    /*--------------------------ETAPAS---------------------------------*/
+    /**
+     * Creación de la actividad.
+     *
+     * @param savedInstanceState El estado de la aplicación en un paquete.
+     */
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_registration_birthdate)
+
+        authentication = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().reference
+        storage = FirebaseStorage.getInstance().reference
+        calendar = Calendar.getInstance()
+
+        buttonNext.setOnClickListener { nextButton() }
+        buttonDate.setOnClickListener { datePicker() }
+
+        textViewDate.text = SimpleDateFormat(dateFormat, Locale.US).format(System.currentTimeMillis())
+
+        dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+
+            calendar?.set(Calendar.YEAR, year)
+            calendar?.set(Calendar.MONTH, monthOfYear)
+            calendar?.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+            yearBirthDate = calendar!!.get(Calendar.YEAR)
+            monthBirthDate = calendar!!.get(Calendar.MONTH)
+            dayBirthDate = calendar!!.get(Calendar.DAY_OF_MONTH)
+
+            val date = "$dayBirthDate/$monthBirthDate/$yearBirthDate"
+            textViewDate.text = date
+        }
+
+        /*Recibimos los datos del intent.*/
+        name = intent.getStringExtra(nameUser)
+        surname = intent.getStringExtra(surnameUser)
+        email = intent.getStringExtra(emailUser)
+        password = intent.getStringExtra(passwordUser)
+    }
+
+    /*--------------------------MÉTODOS PRIVADOS---------------------------------*/
+    /**
+     * Comprueba que el campo tenga el formato correcto.
+     *
+     * @return Fecha de nacimiento correcto.
+     */
+    private fun validateForm(birthdate: String): Boolean {
+        var correctBirthDate = true
+
+        when {
+            TextUtils.isEmpty(birthdate) -> {
+                textViewBirthdate.error = getString(R.string.required_field)
+                correctBirthDate = false
+            }
+            yearOld() >= 18 -> textViewBirthdate.error = null
+            else -> {
+                textViewBirthdate.error = getString(R.string.incorrect_birthdate_format)
+                correctBirthDate = false
+            }
+        }
+        return correctBirthDate
+    }
+
+    /**
+     * Calcula los años del usuario.
+     */
+    private fun yearOld(): Int {
+        var age = 0
+        try {
+            val birthdate = SimpleDateFormat(dateFormat, Locale.US).parse("$dayBirthDate/$monthBirthDate/$yearBirthDate")
+
+            val currentdate = calendar!!.time
+
+            val formatter = SimpleDateFormat("yyyyMMdd", Locale.US)
+            val from = Integer.parseInt(formatter.format(birthdate))
+            val to = Integer.parseInt(formatter.format(currentdate))
+
+            age = (to - from) / 10000
+
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+
+        return age
+    }
+
+    /**
+     * Abre el calendario para seleccionar la fecha.
+     */
+    private fun datePicker() {
+        DatePickerDialog(this@ActivityRegistrationBirthDate, dateSetListener,
+                calendar!!.get(Calendar.YEAR),
+                calendar!!.get(Calendar.MONTH),
+                calendar!!.get(Calendar.DAY_OF_MONTH)).show()
+    }
+
+    /**
+     * Ejecuta la creación del usuario.
+     */
+    private fun nextButton() {
+        val birthdate = textViewDate.text.toString()
+        if (!validateForm(birthdate)) {
+            return
+        }
+        authentication!!.createUserWithEmailAndPassword(email!!, password!!)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        val userSession = authentication!!.currentUser
+                        val user = User(userSession!!.uid, name!!, surname!!, email!!, birthdate)
+
+                        database!!.child(databaseUsers).child(userSession.uid).setValue(user)
+                        val intent = Intent(this@ActivityRegistrationBirthDate, activity_login::class.java)
+                        startActivity(intent)
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(this@ActivityRegistrationBirthDate, "Autentificación fallida.",
+                                Toast.LENGTH_SHORT).show()
+                    }
+                }
+    }
+}
