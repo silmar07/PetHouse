@@ -32,4 +32,5 @@
     <string name="required_field">Campo requerido</string>
     <string name="incorrect_email_format">Formato de correo electrónico incorrecto</string>
     <string name="incorrect_password_format">Mínimo 8 caracteres</string>
+    <string name="incorrect_birthdate_format">Se requiere ser mayor de edad</string>
 </resources>

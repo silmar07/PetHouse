@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
-import android.util.Log
 import android.widget.Toast
 import com.fdi.pad.pethouse.R
 import com.fdi.pad.pethouse.activity_login
@@ -18,6 +17,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlinx.android.synthetic.main.activity_registration_birthdate.*
 
+/**
+ * Actividad que define el paso del registro donde se introduce la fecha de nacimiento del usuario.
+ */
 class ActivityRegistrationBirthDate : AppCompatActivity() {
     /*------------------------------CONSTANTES---------------------------*/
     /**
@@ -40,8 +42,11 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
      * Parámetro para determinar la contraseña del usuario.
      */
     private val passwordUser = "password"
+    /**
+     * Formato de la fecha.
+     */
+    private val dateFormat = "dd/MM/yyyy"
 
-    private val tag = "Register"
     /*------------------------------ATRIBUTOS----------------------------*/
     /**
      * Nombre del usuario.
@@ -59,6 +64,7 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
      * Contraseña del usuario.
      */
     private var password: String? = null
+
     /**
      * Año de nacimiento del usuario.
      */
@@ -71,18 +77,30 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
      * Día de nacimiento del usuario.
      */
     private var dayBirthDate: Int = 0
+
     /**
-     * Autencicador de la aplicación dado por la tecnología FireBase.
+     * Autentificador de la aplicación dado por la tecnología FireBase.
      */
     private var authentication: FirebaseAuth? = null
+    /**
+     * Base de datos de la aplicación dada por la tecnología FireBase.
+     */
     private var database: DatabaseReference? = null
+    /**
+     * Almacenaje en la nube de la aplicación dada por la tecnología Firebase.
+     */
     private var storage: StorageReference? = null
+
+    /**
+     * Calendario de la aplicación.
+     */
+    private var calendar: Calendar? = null
+    /**
+     * Evento que actualizará la fecha seleccionada por el DatePickerDialog
+     */
     private var dateSetListener: DatePickerDialog.OnDateSetListener? = null
 
-    private var calendar: Calendar? = null
-
     /*--------------------------ETAPAS---------------------------------*/
-
     /**
      * Creación de la actividad.
      *
@@ -97,11 +115,10 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
         storage = FirebaseStorage.getInstance().reference
         calendar = Calendar.getInstance()
 
-        buttonNextRegistrationBirthdate.setOnClickListener { nextButton() }
-        buttonDateRegistrationBirthdate.setOnClickListener { datePicker() }
+        buttonNext.setOnClickListener { nextButton() }
+        buttonDate.setOnClickListener { datePicker() }
 
-        var dataFormater = SimpleDateFormat("dd/MM/yyyy", Locale.US)
-        textViewBirthdateRegistrationDate.text = dataFormater.format(System.currentTimeMillis())
+        textViewDate.text = SimpleDateFormat(dateFormat, Locale.US).format(System.currentTimeMillis())
 
         dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
 
@@ -114,8 +131,7 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
             dayBirthDate = calendar!!.get(Calendar.DAY_OF_MONTH)
 
             val date = "$dayBirthDate/$monthBirthDate/$yearBirthDate"
-
-            textViewBirthdateRegistrationDate.text = date
+            textViewDate.text = date
         }
 
         /*Recibimos los datos del intent.*/
@@ -127,34 +143,34 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
 
     /*--------------------------MÉTODOS PRIVADOS---------------------------------*/
     /**
-     * Comprueba que los casilleros no estén vacíos.
+     * Comprueba que el campo tenga el formato correcto.
      *
-     * @return Casilleros correctos
+     * @return Fecha de nacimiento correcto.
      */
     private fun validateForm(birthdate: String): Boolean {
-        var correct = true
+        var correctBirthDate = true
 
         when {
             TextUtils.isEmpty(birthdate) -> {
-                textViewBirthdateRegistrationDate.error = "Requerido."
-                correct = false
+                textViewBirthdate.error = getString(R.string.required_field)
+                correctBirthDate = false
             }
-            yearOld() >= 18 -> textViewBirthdateRegistrationDate.error = null
+            yearOld() >= 18 -> textViewBirthdate.error = null
             else -> {
-                textViewBirthdateRegistrationDate.error = "Requieres ser mayor de edad"
-                correct = false
+                textViewBirthdate.error = getString(R.string.incorrect_birthdate_format)
+                correctBirthDate = false
             }
         }
-        return correct
+        return correctBirthDate
     }
 
+    /**
+     * Calcula los años del usuario.
+     */
     private fun yearOld(): Int {
         var age = 0
         try {
-
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US)
-
-            val birthdate = dateFormat.parse("$dayBirthDate/$monthBirthDate/$yearBirthDate")
+            val birthdate = SimpleDateFormat(dateFormat, Locale.US).parse("$dayBirthDate/$monthBirthDate/$yearBirthDate")
 
             val currentdate = calendar!!.time
 
@@ -171,6 +187,9 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
         return age
     }
 
+    /**
+     * Abre el calendario para seleccionar la fecha.
+     */
     private fun datePicker() {
         DatePickerDialog(this@ActivityRegistrationBirthDate, dateSetListener,
                 calendar!!.get(Calendar.YEAR),
@@ -178,23 +197,25 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
                 calendar!!.get(Calendar.DAY_OF_MONTH)).show()
     }
 
+    /**
+     * Ejecuta la creación del usuario.
+     */
     private fun nextButton() {
-        val birthdate = textViewBirthdateRegistrationDate.text.toString()
+        val birthdate = textViewDate.text.toString()
         if (!validateForm(birthdate)) {
             return
         }
         authentication!!.createUserWithEmailAndPassword(email!!, password!!)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        val user_session = authentication!!.currentUser
-                        val user = User(user_session!!.uid, name!!, surname!!, email!!, birthdate)
+                        val userSession = authentication!!.currentUser
+                        val user = User(userSession!!.uid, name!!, surname!!, email!!, birthdate)
 
-                        database!!.child(databaseUsers).child(user_session.uid).setValue(user)
+                        database!!.child(databaseUsers).child(userSession.uid).setValue(user)
                         val intent = Intent(this@ActivityRegistrationBirthDate, activity_login::class.java)
                         startActivity(intent)
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w(tag, "createUserWithEmail:failure", task.exception)
                         Toast.makeText(this@ActivityRegistrationBirthDate, "Autentificación fallida.",
                                 Toast.LENGTH_SHORT).show()
                     }
