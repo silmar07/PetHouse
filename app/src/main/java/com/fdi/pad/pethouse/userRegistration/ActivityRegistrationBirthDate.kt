@@ -10,12 +10,13 @@ import com.fdi.pad.pethouse.R
 import com.fdi.pad.pethouse.activity_login
 import com.fdi.pad.pethouse.entities.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import com.google.firebase.storage.*
-import java.text.ParseException
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import kotlinx.android.synthetic.main.activity_registration_birthdate.*
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlinx.android.synthetic.main.activity_registration_birthdate.*
 
 /**
  * Actividad que define el paso del registro donde se introduce la fecha de nacimiento del usuario.
@@ -168,20 +169,17 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
      * Calcula los años del usuario.
      */
     private fun yearOld(): Int {
-        var age = 0
-        try {
-            val birthdate = SimpleDateFormat(dateFormat, Locale.US).parse("$dayBirthDate/$monthBirthDate/$yearBirthDate")
+        val today = Calendar.getInstance()
+        val birthdate = Calendar.getInstance()
+        birthdate.set(Calendar.YEAR, yearBirthDate)
+        birthdate.set(Calendar.MONTH, monthBirthDate)
+        birthdate.set(Calendar.DAY_OF_MONTH, dayBirthDate)
 
-            val currentdate = calendar!!.time
-
-            val formatter = SimpleDateFormat("yyyyMMdd", Locale.US)
-            val from = Integer.parseInt(formatter.format(birthdate))
-            val to = Integer.parseInt(formatter.format(currentdate))
-
-            age = (to - from) / 10000
-
-        } catch (e: ParseException) {
-            e.printStackTrace()
+        var age = today.get(Calendar.YEAR) - birthdate.get(Calendar.YEAR)
+        if (birthdate.get(Calendar.MONTH) > today.get(Calendar.MONTH) ||
+                birthdate.get(Calendar.MONTH) == today.get(Calendar.MONTH)
+                && birthdate.get(Calendar.DATE) > today.get(Calendar.DATE)) {
+            age--
         }
 
         return age

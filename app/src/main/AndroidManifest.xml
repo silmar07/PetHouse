@@ -37,6 +37,7 @@
         <activity android:name=".userRegistration.ActivityRegistrationEmail" />
         <activity android:name=".userRegistration.ActivityRegistrationLogin" />
         <activity android:name=".userRegistration.ActivityRegistrationPassword" />
+        <activity android:name=".home.editarPerfil" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
