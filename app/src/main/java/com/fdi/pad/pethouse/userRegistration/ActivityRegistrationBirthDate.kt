@@ -8,7 +8,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import com.fdi.pad.pethouse.R
-import com.fdi.pad.pethouse.activity_login
+import com.fdi.pad.pethouse.ActivityLogin
 import com.fdi.pad.pethouse.entities.User
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -196,7 +196,7 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
     private fun registerUser() {
         progressBarRegistration.visibility = View.INVISIBLE
 
-        val intent = Intent(this@ActivityRegistrationBirthDate, activity_login::class.java)
+        val intent = Intent(this@ActivityRegistrationBirthDate, ActivityLogin::class.java)
         startActivity(intent)
     }
 
