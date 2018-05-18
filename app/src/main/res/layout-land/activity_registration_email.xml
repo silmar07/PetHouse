@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fdi.pad.pethouse.registration_user.activity_registration_email">
+    tools:context="com.fdi.pad.pethouse.userRegistration.ActivityRegistrationEmail">
 
     <EditText
-        android:id="@+id/editTextEmailRegistrationEmail"
+        android:id="@+id/editTextEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -20,10 +20,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEmailRegistrationEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
 
     <TextView
-        android:id="@+id/textViewEmailRegistrationEmail"
+        android:id="@+id/textViewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -32,10 +32,10 @@
         android:contentDescription="@string/email_description"
         android:text="@string/email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewQuestionRegistrationEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewQuestion" />
 
     <TextView
-        android:id="@+id/textViewQuestionRegistrationEmail"
+        android:id="@+id/textViewQuestion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -45,7 +45,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/question_email"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -53,7 +53,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonNextRegistrationEmail"
+        android:id="@+id/buttonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"

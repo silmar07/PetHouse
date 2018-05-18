@@ -42,11 +42,11 @@ public class AjustesFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.buttonExit: {
                 my_authentication.signOut();
-                Intent intent = new Intent(getActivity(),activity_login.class);
+                Intent intent = new Intent(getActivity(), activity_login.class);
                 startActivity(intent);
             } break;
             case R.id.buttonInformation: {
-                Intent intent = new Intent(getActivity(),InforApp.class);
+                Intent intent = new Intent(getActivity(), InforApp.class);
                 startActivity(intent);
             }
         }

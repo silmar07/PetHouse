@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fdi.pad.pethouse.registration_user.activity_registration_name">
+    tools:context="com.fdi.pad.pethouse.userRegistration.ActivityRegistrationName">
 
     <TextView
-        android:id="@+id/textViewQuestionRegistrationName"
+        android:id="@+id/textViewQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -16,13 +16,13 @@
         android:gravity="center"
         android:text="@string/question_name"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewNameRegistrationName"
+        android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -31,10 +31,10 @@
         android:text="@string/name_registration"
         android:textColor="@color/colorSecondaryText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewQuestionRegistrationName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewQuestion" />
 
     <EditText
-        android:id="@+id/editTextNameRegistrationName"
+        android:id="@+id/editTextName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -46,10 +46,10 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNameRegistrationName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
     <TextView
-        android:id="@+id/textViewSurnameRegistrationName"
+        android:id="@+id/textViewSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -58,10 +58,10 @@
         android:text="@string/surname_registration"
         android:textColor="@color/colorSecondaryText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNameRegistrationName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
     <EditText
-        android:id="@+id/editTextSurnameRegistrationName"
+        android:id="@+id/editTextSurname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -73,10 +73,10 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSurnameRegistrationName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSurname" />
 
     <Button
-        android:id="@+id/buttonNextRegistrationName"
+        android:id="@+id/buttonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"

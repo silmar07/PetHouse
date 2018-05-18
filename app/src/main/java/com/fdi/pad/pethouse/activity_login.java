@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.fdi.pad.pethouse.registration_user.activity_registration_name;
+import com.fdi.pad.pethouse.userRegistration.ActivityRegistrationName;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,8 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.Map;
 
 /**
  * Actividad que define la pantalla inicial de login.
@@ -127,7 +125,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
      * Comienza el flujo del registro de un usuario.
      */
     private void RegisterButton() {
-        Intent intent = new Intent(activity_login.this, activity_registration_name.class);
+        Intent intent = new Intent(activity_login.this, ActivityRegistrationName.class);
         startActivity(intent);
     }
 

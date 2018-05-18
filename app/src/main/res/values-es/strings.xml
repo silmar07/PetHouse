@@ -10,8 +10,8 @@
     <string name="password_hint">Introduzca su contraseña.</string>
     <string name="enter_button">Entrar</string>
     <string name="register_button">Registrar</string>
-    <string name="terms">Al pulsar Entrar o Registrarse, confirmo que estoy de acuerdo con las siguientes condiciones de PetHouse : [Condiciones del servicio], [Términos y Condiciones de Pago del servicio], [Política de privacidad] y [Politica contra el abandono animal].</string>
-    <string name="reqEdad">La aplicación de PetHouse sólamente puedes ser utilizada por personas mayores de 18 años.</string>
+    <string name="terms">Al pulsar Entrar o Registrarse, confirmo que estoy de acuerdo con las siguientes condiciones de PetHouse : [Condiciones del servicio], [Términos y Condiciones de Pago del servicio], [Política de privacidad] y [Política contra el abandono animal].</string>
+    <string name="reqEdad">La aplicación de PetHouse solamente puedes ser utilizada por personas mayores de 18 años.</string>
     <string name="question_name">¿Cuál es tu nombre?</string>
     <string name="name_registration">Nombre:</string>
     <string name="name_hint">Nombre.</string>
@@ -27,4 +27,10 @@
     <string name="title_dashboard">Menú</string>
     <string name="title_notifications">Notificaciones</string>
     <string name="exit">Salir</string>
+    <string name="birthdate">Fecha de nacimiento:</string>
+    <string name="birthdate_default">01/01/1990</string>
+    <string name="required_field">Campo requerido</string>
+    <string name="incorrect_email_format">Formato de correo electrónico incorrecto</string>
+    <string name="incorrect_password_format">Mínimo 8 caracteres</string>
+    <string name="incorrect_birthdate_format">Se requiere ser mayor de edad</string>
 </resources>
