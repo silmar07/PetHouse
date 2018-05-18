@@ -1,50 +1,43 @@
 package com.fdi.pad.pethouse.entities
 
+import android.os.Parcel
+import android.os.Parcelable
+
 /**
  * Clase que representa un usuario de la aplicación.
  */
-class User {
-    /**
-     * Uuid del usuario.
-     */
-    var uuid: String? = null
-    /**
-     * Nombre del usuario.
-     */
-    var name: String? = null
-    /**
-     * Apellidos del usuario.
-     */
-    var surname: String? = null
-    /**
-     * Fecha de nacimiento del usuario.
-     */
-    var birthdate: String? = null
-    /**
-     * Correo electrónico del usuario.
-     */
-    var email: String? = null
+data class User(var uuid: String? = null,
+                var name: String? = null,
+                var surname: String? = null,
+                var birthdate: String? = null,
+                var email: String? = null) : Parcelable {
 
-    /**
-     * Contructor vacío de la clase.
-     */
-    @Suppress("unused")
-    constructor()
+    constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString())
 
-    /**
-     * Constructor de la clase.
-     *
-     * @param uuid Uuid del usuario.
-     * @param name Nombre del usuario.
-     * @param surname Apellidos del usuario.
-     * @param birthdate Fecha de nacimiento del usuario.
-     * @param email Correo electrónico del usuario.
-     */
-    constructor(uuid: String, name: String, surname: String, birthdate: String, email: String){
-        this.uuid = uuid
-        this.name = name
-        this.surname = surname
-        this.birthdate = birthdate
-        this.email = email
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(uuid)
+        parcel.writeString(name)
+        parcel.writeString(surname)
+        parcel.writeString(birthdate)
+        parcel.writeString(email)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<User> {
+        override fun createFromParcel(parcel: Parcel): User {
+            return User(parcel)
+        }
+
+        override fun newArray(size: Int): Array<User?> {
+            return arrayOfNulls(size)
+        }
     }
 }
