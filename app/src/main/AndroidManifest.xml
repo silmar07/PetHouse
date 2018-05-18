@@ -19,14 +19,13 @@
         android:roundIcon="@mipmap/favicon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_login">
+        <activity android:name=".ActivityLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".userRegistration.ActivityRegistrationBirthDate" />
         <activity
             android:name=".activity_home"
             android:label="@string/title_activity_home" />
@@ -37,6 +36,7 @@
         <activity android:name=".userRegistration.ActivityRegistrationEmail" />
         <activity android:name=".userRegistration.ActivityRegistrationLogin" />
         <activity android:name=".userRegistration.ActivityRegistrationPassword" />
+        <activity android:name=".userRegistration.ActivityRegistrationBirthDate" />
         <activity android:name=".home.editarPerfil" />
 
         <meta-data
