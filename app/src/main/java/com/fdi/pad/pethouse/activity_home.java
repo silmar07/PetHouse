@@ -8,12 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.fdi.pad.pethouse.home.FragmentHomeSearch;
 import com.fdi.pad.pethouse.home.fragment_home_user;
 
 public class activity_home extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private TextView mTextMessage;
-    private BusqFragment bsqFragment;
+    private FragmentHomeSearch bsqFragment;
     private MascotaFragment masFragment;
     private HomeFragment homeFragment;
     private fragment_home_user homeUserFragment;
@@ -25,7 +26,7 @@ public class activity_home extends AppCompatActivity implements BottomNavigation
         setContentView(R.layout.activity_home);
 
         //Creamos los fragmentos
-        bsqFragment = new BusqFragment();
+        bsqFragment = new FragmentHomeSearch();
         masFragment = new MascotaFragment();
         homeFragment = new HomeFragment();
         homeUserFragment = new fragment_home_user();
