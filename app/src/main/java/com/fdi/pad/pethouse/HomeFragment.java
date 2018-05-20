@@ -3,7 +3,9 @@ package com.fdi.pad.pethouse;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.net.Uri;
+
+import com.fdi.pad.pethouse.entities.Ad;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -23,10 +33,21 @@ public class HomeFragment extends Fragment {
     private ListView listView;
     private ArrayList<AnuncioList> listaAnuncios;
 
+    private static final String TAG = "Home Ad";
+    private Ad ads;
+
+    private FirebaseAuth my_authentication;
+    private DatabaseReference adsDatabase;
+    private ArrayList<Ad> listaAnuncios_Firebase;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home,null);
+
+        View view = inflater.inflate(R.layout.fragment_home,null);
+
+        return view;
+
     }
 
 
@@ -34,9 +55,22 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
 
+        //boton para añadir mascotas
+        FloatingActionButton btnAñadir = (FloatingActionButton) getView().findViewById(R.id.bntFlotingAnuncio);
+
+        btnAñadir.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(),crearAnuncio.class);
+                startActivity(intent);
+
+            }
+        });
+
+
         listView = (ListView)getView().findViewById(R.id.listaAnuncios);
 
-        cargarLista();
+        cargarListaFirebase();
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -54,15 +88,40 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void cargarLista() {
+    private void cargarListaFirebase() {
 
-        //creamso la lista dodne vamso a poner los enlaces
-        ArrayList<AnuncioList> lista = new ArrayList<>();
+        listaAnuncios_Firebase = new ArrayList<Ad>();
 
-        //creamos la lista de anuncios
-        cargarAnuncios();
+        FirebaseDatabase.getInstance().getReference("ads")
+            .addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        ads = snapshot.getValue(Ad.class);
+                        listaAnuncios_Firebase.add(ads);
+                    }
+                    cargarListaAnuncios();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.e(TAG, databaseError.toString());
+                }
+        });
+    }
+
+    private void cargarListaAnuncios(){
+
+        listaAnuncios = new ArrayList<>();
 
         int i = 0;
+        while( i < listaAnuncios_Firebase.size()){
+            listaAnuncios.add(new AnuncioList(listaAnuncios_Firebase.get(i).getName(),listaAnuncios_Firebase.get(i).getUrl(),i));
+            i ++;
+        }
+
+        ArrayList<AnuncioList> lista = new ArrayList<>();
+        i = 0;
         while( i < listaAnuncios.size()){
             lista.add(listaAnuncios.get(i));
             i++;
@@ -74,15 +133,4 @@ public class HomeFragment extends Fragment {
         listView.setAdapter(adapter);
 
     }
-
-    private void cargarAnuncios() {
-
-        listaAnuncios = new ArrayList<>();
-
-        listaAnuncios.add(new AnuncioList("Anuncio 1","https://www.google.es/?gws_rd=ssl",0));
-        listaAnuncios.add(new AnuncioList("Anuncio 2","http://www.ucm.es",1));
-        listaAnuncios.add(new AnuncioList("Anuncio 3","https://www.youtube.com/?hl=es&gl=ES",2));
-        listaAnuncios.add(new AnuncioList("Anuncio 4","https://github.com",3));
-    }
-
 }
