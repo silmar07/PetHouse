@@ -38,7 +38,7 @@
         <activity android:name=".InforApp" />
         <activity android:name=".userRegistration.ActivityRegistrationName" />
         <activity android:name=".userRegistration.ActivityRegistrationEmail" />
-        <activity android:name=".userRegistration.ActivityRegistrationLogin" />
+        <activity android:name=".userRegistration.ActivityRegistrationAddress" />
         <activity android:name=".userRegistration.ActivityRegistrationPassword" />
         <activity android:name=".userRegistration.ActivityRegistrationBirthDate" />
         <activity android:name=".home.editarPerfil" />

@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 /**
- * Clase que representa un usuario de la aplicación.
+ * Clase que representa un anuncio de la aplicación.
  */
 data class Ad(var uuid: String? = null,
               var name: String? = null,
