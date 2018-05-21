@@ -9,8 +9,8 @@ import android.os.Parcelable
 data class User(var uuid: String? = null,
                 var name: String? = null,
                 var surname: String? = null,
-                var birthdate: String? = null,
-                var email: String? = null) : Parcelable {
+                var email: String? = null,
+                var birthdate: String? = null) : Parcelable {
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
@@ -23,8 +23,8 @@ data class User(var uuid: String? = null,
         parcel.writeString(uuid)
         parcel.writeString(name)
         parcel.writeString(surname)
-        parcel.writeString(birthdate)
         parcel.writeString(email)
+        parcel.writeString(birthdate)
     }
 
     override fun describeContents(): Int {
