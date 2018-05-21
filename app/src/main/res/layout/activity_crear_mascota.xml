@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fdi.pad.pethouse.modMascota">
+    tools:context="com.fdi.pad.pethouse.crearMascota">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -16,13 +16,6 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="8dp">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/perro" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +23,7 @@
             android:text="Nombre:" />
 
         <EditText
-            android:id="@+id/modMasNombre"
+            android:id="@+id/crearMasNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -46,7 +39,7 @@
             android:text="Especie:" />
 
         <EditText
-            android:id="@+id/modEspecieMasNombre"
+            android:id="@+id/crearEspecieMasNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -63,7 +56,7 @@
             android:text="Raza" />
 
         <EditText
-            android:id="@+id/modRazaMasNombre"
+            android:id="@+id/crearRazaMasNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -80,7 +73,7 @@
             android:text="Edad:" />
 
         <EditText
-            android:id="@+id/modEdadMasNombre"
+            android:id="@+id/crearEdadMasNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -94,10 +87,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="Esterilización:" />
+            android:text="Esterilización: (Si/No)" />
 
         <EditText
-            android:id="@+id/modEsteMasNombre"
+            android:id="@+id/crearEsteMasNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -114,7 +107,7 @@
             android:text="Datos médicos:" />
 
         <EditText
-            android:id="@+id/modDatosMedMasNombre"
+            android:id="@+id/crearDatosMedMasNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -131,7 +124,7 @@
             android:text="Otros datos:" />
 
         <EditText
-            android:id="@+id/modOtroDatosMasNombre"
+            android:id="@+id/crearOtroDatosMasNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -141,16 +134,17 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="103dp" />
 
-    <Button
-        android:id="@+id/btnMasGuardar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Guardar"
-        android:layout_gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:layout_editor_absoluteX="136dp"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/btnCrearMasGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Guardar"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:layout_editor_absoluteX="136dp"
+            tools:ignore="MissingConstraints" />
+
 
     </LinearLayout>
 

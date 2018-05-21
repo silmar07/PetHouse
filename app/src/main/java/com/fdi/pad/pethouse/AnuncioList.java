@@ -3,6 +3,8 @@ package com.fdi.pad.pethouse;
 import android.net.Uri;
 import android.widget.TextView;
 
+import com.fdi.pad.pethouse.entities.Ad;
+
 import java.util.ArrayList;
 
 /**

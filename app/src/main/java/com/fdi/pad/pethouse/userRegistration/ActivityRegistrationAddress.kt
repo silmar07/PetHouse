@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import com.fdi.pad.pethouse.R
 import kotlinx.android.synthetic.main.activity_registration_login.*
 
-class ActivityRegistrationLogin : AppCompatActivity() {
+class ActivityRegistrationAddress : AppCompatActivity() {
 
     /*--------------------------ETAPAS---------------------------------*/
     /**

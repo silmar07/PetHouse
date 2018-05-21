@@ -38,7 +38,7 @@
         <activity android:name=".InforApp" />
         <activity android:name=".userRegistration.ActivityRegistrationName" />
         <activity android:name=".userRegistration.ActivityRegistrationEmail" />
-        <activity android:name=".userRegistration.ActivityRegistrationLogin" />
+        <activity android:name=".userRegistration.ActivityRegistrationAddress" />
         <activity android:name=".userRegistration.ActivityRegistrationPassword" />
         <activity android:name=".userRegistration.ActivityRegistrationBirthDate" />
         <activity android:name=".home.editarPerfil" />
@@ -46,6 +46,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
+        <activity android:name=".crearMascota" />
+        <activity android:name=".crearAnuncio"></activity>
     </application>
 
 </manifest>
