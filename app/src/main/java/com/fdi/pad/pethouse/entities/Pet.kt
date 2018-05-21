@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 /**
- * Clase que representa un usuario de la aplicación.
+ * Clase que representa una mascota de la aplicación.
  */
 data class Pet(var name: String? = null,
                var species: String? = null,

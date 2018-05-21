@@ -141,7 +141,7 @@ class ActivityRegistrationEmail : AppCompatActivity() {
      * @param uuid Identificador del usuario existente.
      */
     private fun existUser(uuid: String) {
-        val intent = Intent(this, ActivityRegistrationLogin::class.java)
+        val intent = Intent(this, ActivityRegistrationAddress::class.java)
         intent.putExtra(uuidUser, uuid)
         startActivity(intent)
     }
