@@ -79,6 +79,7 @@ class ActivityRegistrationEmail : AppCompatActivity() {
 
         if (!validateForm(email)) return
         else checkUser(email)
+
     }
 
     /**
@@ -113,6 +114,8 @@ class ActivityRegistrationEmail : AppCompatActivity() {
      */
     private fun checkUser(email: String) {
         var exist = false
+
+
         database!!.child(databaseUsers).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError?) {}
 

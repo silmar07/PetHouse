@@ -11,8 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.fdi.pad.pethouse.ActivityLogin;
 import com.fdi.pad.pethouse.R;
+import com.fdi.pad.pethouse.entities.Pet;
 import com.fdi.pad.pethouse.entities.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +38,7 @@ public class fragment_home_user extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_user,null);
+
         Button edit = view.findViewById(R.id.editar);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +49,49 @@ public class fragment_home_user extends Fragment {
                 startActivityForResult(intent, EDIT_CODE);
             }
         });
+
+
+        Button delete = view.findViewById(R.id.borrar);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                FirebaseDatabase.getInstance().getReference("users").child(my_authentication.getCurrentUser().getUid())
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                                FirebaseDatabase.getInstance().getReference("pets").child(my_authentication.getCurrentUser().getUid())
+                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            dataSnapshot.getRef().removeValue();
+                                        }
+
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+                                            Log.e(TAG, databaseError.toString());
+                                        }
+                                    });
+
+                                dataSnapshot.getRef().removeValue();
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                Log.e(TAG, databaseError.toString());
+                            }
+                        });
+
+                my_authentication.signOut();
+                Intent intent = new Intent(getActivity(), ActivityLogin.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
