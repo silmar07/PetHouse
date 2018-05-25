@@ -18,12 +18,18 @@ public class AnuncioList {
     private String texto;
     private Uri uri;
     private int pos;
+    private String uid;
 
-    public AnuncioList(String text, String enlace, int p){
+    public AnuncioList(String text, String enlace, int p,String id){
 
         texto = text;
         uri = Uri.parse(enlace);
         pos = p;
+        uid = id;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getEnlace() {
@@ -38,6 +44,10 @@ public class AnuncioList {
         return texto;
     }
 
+    public String getUid() {
+        return uid;
+    }
+
     public Uri getUri(){
         return uri;
     }
@@ -47,6 +57,26 @@ public class AnuncioList {
     }
 
     public static AnuncioList getAnuncio(int pos, ArrayList<AnuncioList> lista) {
+
+        AnuncioList a = null;
+        boolean enc = false;
+        int i = 0;
+
+        while (!enc && i < lista.size()) {
+
+            AnuncioList aux = lista.get(i);
+
+            if (aux.getPos() == pos) {
+                enc = true;
+                a = aux;
+            }
+            i++;
+        }//while
+
+        return a;
+    }
+
+    public static AnuncioList getUid(int pos, ArrayList<AnuncioList> lista) {
 
         AnuncioList a = null;
         boolean enc = false;

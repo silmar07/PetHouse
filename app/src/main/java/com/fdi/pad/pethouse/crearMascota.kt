@@ -26,7 +26,6 @@ import java.lang.Integer.parseInt
 class crearMascota : AppCompatActivity() {
 
     val PET_EXTRA = "PET_EXTRA"
-
     //datos de la bbdd
     private val idUserPet = "idUser"
     private val namePet = "name"
