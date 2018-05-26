@@ -3,6 +3,7 @@ package com.fdi.pad.pethouse.home;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,7 +18,11 @@ import com.fdi.pad.pethouse.ActivityLogin;
 import com.fdi.pad.pethouse.R;
 import com.fdi.pad.pethouse.entities.Pet;
 import com.fdi.pad.pethouse.entities.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -56,39 +61,16 @@ public class fragment_home_user extends Fragment {
             @Override
             public void onClick(View view) {
 
-
-                FirebaseDatabase.getInstance().getReference("users").child(my_authentication.getCurrentUser().getUid())
-                        .addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                                FirebaseDatabase.getInstance().getReference("pets").child(my_authentication.getCurrentUser().getUid())
-                                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(DataSnapshot dataSnapshot) {
-                                            dataSnapshot.getRef().removeValue();
-                                        }
-
-
-                                        @Override
-                                        public void onCancelled(DatabaseError databaseError) {
-                                            Log.e(TAG, databaseError.toString());
-                                        }
-                                    });
-
-                                dataSnapshot.getRef().removeValue();
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                Log.e(TAG, databaseError.toString());
-                            }
-                        });
+                //borramso los animales asociados al usuario
+                //borramso el usuario
+                //Cerramso session
+                FirebaseDatabase.getInstance().getReference("pets").child(my_authentication.getCurrentUser().getUid()).removeValue();
+                FirebaseDatabase.getInstance().getReference("users").child(my_authentication.getCurrentUser().getUid()).removeValue();
 
                 my_authentication.signOut();
                 Intent intent = new Intent(getActivity(), ActivityLogin.class);
                 startActivity(intent);
+
             }
         });
 

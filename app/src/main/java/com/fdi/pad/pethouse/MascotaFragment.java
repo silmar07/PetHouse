@@ -143,22 +143,21 @@ public class MascotaFragment extends Fragment {
                             case R.id.menu_eliminar:
                                 mascota = MascotaList.getUid(posEliminar, listaMascotas);
 
-
                                 //borramos mascota
                                 FirebaseDatabase.getInstance().getReference("pets").child(my_authentication.getCurrentUser().getUid()).child(mascota.getUid())
-                                        .addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                                dataSnapshot.getRef().removeValue();
-                                                cargarListaFirebase();
-                                            }
+                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            dataSnapshot.getRef().removeValue();
+                                            cargarListaFirebase();
+                                        }
 
 
-                                            @Override
-                                            public void onCancelled(DatabaseError databaseError) {
-                                                Log.e(TAG, databaseError.toString());
-                                            }
-                                        });
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+                                            Log.e(TAG, databaseError.toString());
+                                        }
+                                    });
                                 break;
                         }
                         return true;
