@@ -1,5 +1,6 @@
 package com.fdi.pad.pethouse;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.fdi.pad.pethouse.entities.Ad;
@@ -45,6 +49,10 @@ public class MascotaFragment extends Fragment {
     private ArrayList<MascotaList> listaMascotas;
     private ArrayList<String> listaUids;
     private MascotaList mascota;
+    private int posEliminar;
+    private ArrayAdapter<MascotaList> adapter;
+    private ArrayList<MascotaList> lista;
+    private Pet pet;
 
     private static final String TAG = "Home Pet";
     private static final int EDIT_CODE = 1000;
@@ -54,7 +62,7 @@ public class MascotaFragment extends Fragment {
     private FirebaseAuth my_authentication;
     private DatabaseReference petsDatabase;
     private ArrayList<Pet> listaMascotas_Firebase;
-
+    
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -77,7 +85,7 @@ public class MascotaFragment extends Fragment {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getActivity(),crearMascota.class);
-                startActivity(intent);
+                startActivityForResult(intent, EDIT_CODE);
 
             }
         });
@@ -115,6 +123,49 @@ public class MascotaFragment extends Fragment {
                         }
                 });
 
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView parent, View view, int position, final long id) {
+
+
+                posEliminar = position;
+                PopupMenu popup = new PopupMenu(getActivity(), view);
+                popup.getMenuInflater().inflate(R.menu.menu_eliminar, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+                    //MENU FILA
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.menu_eliminar:
+                                mascota = MascotaList.getUid(posEliminar, listaMascotas);
+
+                                //borramos mascota
+                                FirebaseDatabase.getInstance().getReference("pets").child(my_authentication.getCurrentUser().getUid()).child(mascota.getUid())
+                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            dataSnapshot.getRef().removeValue();
+                                            cargarListaFirebase();
+                                        }
+
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+                                            Log.e(TAG, databaseError.toString());
+                                        }
+                                    });
+                                break;
+                        }
+                        return true;
+                    }
+
+                });
+                popup.show();
+                return true;
             }
         });
     }
@@ -156,17 +207,28 @@ public class MascotaFragment extends Fragment {
             i ++;
         }
 
-        ArrayList<MascotaList> lista = new ArrayList<>();
+        lista = new ArrayList<>();
         i = 0;
         while( i < listaMascotas.size()){
             lista.add(listaMascotas.get(i));
             i++;
         }
 
-        ArrayAdapter<MascotaList> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),
+       adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),
                 android.R.layout.simple_expandable_list_item_1,lista);
 
         listView.setAdapter(adapter);
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == EDIT_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                cargarListaFirebase();
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

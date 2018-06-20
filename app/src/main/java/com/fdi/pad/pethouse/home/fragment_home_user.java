@@ -3,6 +3,7 @@ package com.fdi.pad.pethouse.home;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,10 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.fdi.pad.pethouse.ActivityLogin;
 import com.fdi.pad.pethouse.R;
+import com.fdi.pad.pethouse.entities.Pet;
 import com.fdi.pad.pethouse.entities.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -35,6 +43,7 @@ public class fragment_home_user extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_user,null);
+
         Button edit = view.findViewById(R.id.editar);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +54,26 @@ public class fragment_home_user extends Fragment {
                 startActivityForResult(intent, EDIT_CODE);
             }
         });
+
+
+        Button delete = view.findViewById(R.id.borrar);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //borramso los animales asociados al usuario
+                //borramso el usuario
+                //Cerramso session
+                FirebaseDatabase.getInstance().getReference("pets").child(my_authentication.getCurrentUser().getUid()).removeValue();
+                FirebaseDatabase.getInstance().getReference("users").child(my_authentication.getCurrentUser().getUid()).removeValue();
+
+                my_authentication.signOut();
+                Intent intent = new Intent(getActivity(), ActivityLogin.class);
+                startActivity(intent);
+
+            }
+        });
+
         return view;
     }
 
