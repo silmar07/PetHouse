@@ -8,8 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.fdi.pad.pethouse.fragments.AjustesFragment;
 import com.fdi.pad.pethouse.home.FragmentHomeSearch;
 import com.fdi.pad.pethouse.home.fragment_home_user;
+import com.fdi.pad.pethouse.fragments.*;
 
 public class activity_home extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 

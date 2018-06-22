@@ -1,4 +1,4 @@
-package com.fdi.pad.pethouse;
+package com.fdi.pad.pethouse.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -23,10 +23,14 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.fdi.pad.pethouse.MascotaList;
+import com.fdi.pad.pethouse.R;
+import com.fdi.pad.pethouse.crearMascota;
 import com.fdi.pad.pethouse.entities.Ad;
 import com.fdi.pad.pethouse.entities.Pet;
 import com.fdi.pad.pethouse.entities.User;
 import com.fdi.pad.pethouse.home.editarPerfil;
+import com.fdi.pad.pethouse.perfilMascota;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

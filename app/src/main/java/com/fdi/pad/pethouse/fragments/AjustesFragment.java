@@ -1,4 +1,4 @@
-package com.fdi.pad.pethouse;
+package com.fdi.pad.pethouse.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.fdi.pad.pethouse.ActivityLogin;
+import com.fdi.pad.pethouse.InforApp;
+import com.fdi.pad.pethouse.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 
