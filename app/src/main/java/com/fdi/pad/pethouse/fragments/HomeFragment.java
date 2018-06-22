@@ -1,4 +1,4 @@
-package com.fdi.pad.pethouse;
+package com.fdi.pad.pethouse.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +17,9 @@ import android.widget.ListView;
 import android.net.Uri;
 import android.widget.PopupMenu;
 
+import com.fdi.pad.pethouse.AnuncioList;
+import com.fdi.pad.pethouse.R;
+import com.fdi.pad.pethouse.crearAnuncio;
 import com.fdi.pad.pethouse.entities.Ad;
 import com.fdi.pad.pethouse.entities.Pet;
 import com.google.firebase.auth.FirebaseAuth;
