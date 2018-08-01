@@ -31,6 +31,43 @@ class ActivityLogin : AppCompatActivity() {
 
     //endregion
 
+    //region ETAPAS
+
+    /**
+     * Creación de la actividad.
+     *
+     * @param savedInstanceState El estado de la aplicación en un paquete.
+     */
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
+
+        authentication = FirebaseAuth.getInstance()
+
+        buttonRegister.setOnClickListener { registerButton() }
+        buttonEnter.setOnClickListener { enterButton() }
+    }
+
+    /**
+     * La actividad comienza a ejecutarse.
+     */
+    public override fun onStart() {
+        super.onStart()
+        /*Comprobamos si hay algún usuario que ya ha iniciado la sesión.*/
+        val currentUser = authentication!!.currentUser
+        /*En caso de que se haya iniciado, se procede a mostrar la pantalla principal.*/
+        if (currentUser != null) {
+            login()
+        }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        editTextEmail.text.clear()
+        editTextPassword.text.clear()
+    }
+
+    //endregion
 
     //region MÉTODOS PRIVADOS
 
