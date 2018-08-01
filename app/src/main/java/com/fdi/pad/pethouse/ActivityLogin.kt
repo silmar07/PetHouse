@@ -17,47 +17,22 @@ import kotlinx.android.synthetic.main.activity_login.*
  * Actividad que define la pantalla inicial de login.
  */
 class ActivityLogin : AppCompatActivity() {
-    /*------------------------------ATRIBUTOS----------------------------*/
+    //region ATRIBUTOS
+
     /**
      * Etiqueta para los logs de inicio de sesión.
      */
     private val tag = "Login"
+
     /**
      * Autentificador de la aplicación dado por la tecnología FireBase.
      */
     private var authentication: FirebaseAuth? = null
 
-    /*--------------------------ETAPAS---------------------------------*/
+    //endregion
 
-    /**
-     * Creación de la actividad.
-     *
-     * @param savedInstanceState El estado de la aplicación en un paquete.
-     */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
 
-        authentication = FirebaseAuth.getInstance()
-
-        buttonRegister.setOnClickListener { registerButton() }
-        buttonEnter.setOnClickListener { enterButton() }
-    }
-
-    /**
-     * La actividad comienza a ejecutarse.
-     */
-    public override fun onStart() {
-        super.onStart()
-        /*Comprobamos si hay algún usuario que ya ha iniciado la sesión.*/
-        val currentUser = authentication!!.currentUser
-        /*En caso de que se haya iniciado, se procede a mostrar la pantalla principal.*/
-        if (currentUser != null) {
-            login()
-        }
-    }
-
-    /*--------------------------MÉTODOS PRIVADOS---------------------------------*/
+    //region MÉTODOS PRIVADOS
 
     /**
      * Procede a cambiar a la actividad "home".
@@ -132,5 +107,7 @@ class ActivityLogin : AppCompatActivity() {
         }
         return correctEmail && correctPassword
     }
+
+    //endregion
 }
 
