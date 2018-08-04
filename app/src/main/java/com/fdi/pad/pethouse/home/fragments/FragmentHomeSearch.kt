@@ -1,4 +1,4 @@
-package com.fdi.pad.pethouse.home
+package com.fdi.pad.pethouse.home.fragments
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -57,6 +57,11 @@ class FragmentHomeSearch : Fragment(), OnMapReadyCallback {
      * Cliente que da la ubicación del usuario
      */
     private var mFusedLocationProviderClient: FusedLocationProviderClient? = null
+
+    companion object {
+        val TAG: String = FragmentHomeSearch::class.java.simpleName
+        fun newInstance() = FragmentHomeSearch()
+    }
 
     /*--------------------------ETAPAS---------------------------------*/
     /**

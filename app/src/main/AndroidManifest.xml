@@ -30,9 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity_home"
-            android:label="@string/title_activity_home" />
         <activity android:name=".modMascota" />
         <activity android:name=".perfilMascota" />
         <activity android:name=".InforApp" />
@@ -49,6 +46,7 @@
 
         <activity android:name=".crearMascota" />
         <activity android:name=".crearAnuncio"></activity>
+        <activity android:name=".home.ActivityHome" />
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import com.fdi.pad.pethouse.home.ActivityHome
 
 import com.fdi.pad.pethouse.userRegistration.ActivityRegistrationName
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_login.*
  * Actividad que define la pantalla inicial de login.
  */
 class ActivityLogin : AppCompatActivity() {
+
     //region ATRIBUTOS
 
     /**
@@ -61,6 +63,9 @@ class ActivityLogin : AppCompatActivity() {
         }
     }
 
+    /**
+     * La actividad se reestablece
+     */
     override fun onRestart() {
         super.onRestart()
         editTextEmail.text.clear()
@@ -76,7 +81,7 @@ class ActivityLogin : AppCompatActivity() {
      */
     private fun login() {
         progressBarLogin.visibility = View.INVISIBLE
-        val intent = Intent(this@ActivityLogin, activity_home::class.java)
+        val intent = Intent(this@ActivityLogin, ActivityHome::class.java)
         startActivity(intent)
     }
 
@@ -111,6 +116,7 @@ class ActivityLogin : AppCompatActivity() {
                         Log.w(tag, "signInWithEmail:failure", task.exception)
                         Toast.makeText(this@ActivityLogin, "Autentificación fallida.",
                                 Toast.LENGTH_SHORT).show()
+                        progressBarLogin.visibility = View.INVISIBLE
                     }
                 }
     }
@@ -146,5 +152,6 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     //endregion
+
 }
 
