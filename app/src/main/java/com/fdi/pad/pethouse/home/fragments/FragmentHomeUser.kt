@@ -14,7 +14,7 @@ import android.widget.TextView
 
 import com.fdi.pad.pethouse.R
 import com.fdi.pad.pethouse.entities.User
-import com.fdi.pad.pethouse.home.editarPerfil
+import com.fdi.pad.pethouse.home.user.EditProfile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -39,8 +39,8 @@ class FragmentHomeUser : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home_user, container, false)
         val edit = view.findViewById<Button>(R.id.editar)
         edit.setOnClickListener {
-            val intent = Intent(activity, editarPerfil::class.java)
-            intent.putExtra(editarPerfil.USER_EXTRA, user)
+            val intent = Intent(activity, EditProfile::class.java)
+            intent.putExtra(EditProfile.USER_EXTRA, user)
             startActivityForResult(intent, EDIT_CODE)
         }
         return view
@@ -80,7 +80,7 @@ class FragmentHomeUser : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == EDIT_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                user = data!!.getParcelableExtra(editarPerfil.USER_EXTRA)
+                user = data!!.getParcelableExtra(EditProfile.USER_EXTRA)
                 updateUI()
             }
         }

@@ -1,18 +1,11 @@
-package com.fdi.pad.pethouse
+package com.fdi.pad.pethouse.home.pet
 
 import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
-import android.view.View
-import android.widget.Toast
-import com.fdi.pad.pethouse.R.id.progressBarRegistration
+import com.fdi.pad.pethouse.R
 import com.fdi.pad.pethouse.entities.Pet
-import com.fdi.pad.pethouse.entities.User
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -20,23 +13,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_crear_mascota.*
-import kotlinx.android.synthetic.main.activity_registration_birthdate.*
-import java.lang.Integer.parseInt
 
-class crearMascota : AppCompatActivity() {
+class PetCreate : AppCompatActivity() {
 
-    val PET_EXTRA = "PET_EXTRA"
-
-    //datos de la bbdd
-    private val idUserPet = "idUser"
-    private val namePet = "name"
-    private val agePet = "age"
-    private val speciePet = "specie"
-    private val breedPet = "breed"
-    private val stelilizationPet = "stelilization"
-    private val otherDataPet = "otherData"
-    private val medicalDataPet = "medicalData"
-
+    private val petExtra = "petExtra"
 
     //Atributos
     private var name: String? = null
@@ -69,13 +49,13 @@ class crearMascota : AppCompatActivity() {
     private fun btnGuardar() {
 
         //recogemos los datos
-        name = crearMasNombre.text.toString();
-        age = crearEdadMasNombre.text.toString();
-        specie = crearEspecieMasNombre.text.toString();
-        breed = crearRazaMasNombre.text.toString();
-        stelilization = crearEsteMasNombre.text.toString();
-        otherData = crearOtroDatosMasNombre.text.toString();
-        medicalData = crearDatosMedMasNombre.text.toString();
+        name = crearMasNombre.text.toString()
+        age = crearEdadMasNombre.text.toString()
+        specie = crearEspecieMasNombre.text.toString()
+        breed = crearRazaMasNombre.text.toString()
+        stelilization = crearEsteMasNombre.text.toString()
+        otherData = crearOtroDatosMasNombre.text.toString()
+        medicalData = crearDatosMedMasNombre.text.toString()
 
 
         if(name.equals("") || age.equals("") || specie.equals("") || breed.equals("") || stelilization.equals("") || otherData.equals("")
@@ -88,7 +68,7 @@ class crearMascota : AppCompatActivity() {
             database!!.child(databasePets).child(userSession!!.uid).push().setValue(pet)
 
             val data = Intent()
-            data.putExtra(PET_EXTRA, pet)
+            data.putExtra(petExtra, pet)
             setResult(Activity.RESULT_OK, data)
             finish()
 

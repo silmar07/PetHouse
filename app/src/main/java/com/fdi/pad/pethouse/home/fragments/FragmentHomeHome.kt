@@ -10,10 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import com.fdi.pad.pethouse.AnuncioList
 import com.fdi.pad.pethouse.R
-import com.fdi.pad.pethouse.crearAnuncio
 import com.fdi.pad.pethouse.entities.Ad
+import com.fdi.pad.pethouse.home.home.AdCreate
+import com.fdi.pad.pethouse.home.home.AdList
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -27,7 +27,7 @@ class FragmentHomeHome : Fragment() {
 
     private var ads: Ad? = null
 
-    private var listAnuncios:  ArrayList<AnuncioList>? = null
+    private var listAnuncios:  ArrayList<AdList>? = null
 
     private var listaAnunciosFirebase: ArrayList<Ad>? = null
 
@@ -48,14 +48,14 @@ class FragmentHomeHome : Fragment() {
         super.onActivityCreated(state)
 
         bntFlotingAnuncio.setOnClickListener {
-            val intent = Intent(activity, crearAnuncio::class.java)
+            val intent = Intent(activity, AdCreate::class.java)
             startActivity(intent)
         }
 
         cargarListaFirebase()
 
         listaAnunciosHome.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            val anuncio = AnuncioList.getAnuncio(position, listAnuncios)
+            val anuncio = AdList.getAnuncio(position, listAnuncios!!)
             val s = anuncio!!.uri
 
             val intent = Intent(Intent.ACTION_VIEW, s)
@@ -91,7 +91,7 @@ class FragmentHomeHome : Fragment() {
         listAnuncios = ArrayList()
 
         for((i, ad) in listaAnunciosFirebase!!.withIndex()) {
-            listAnuncios!!.add(AnuncioList(ad.name, ad.url, i))
+            listAnuncios!!.add(AdList(ad.name!!, ad.url!!, i))
         }
 
         val adapter = ArrayAdapter(activity!!.applicationContext,

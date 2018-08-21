@@ -32,21 +32,21 @@
         </activity>
         <activity android:name=".modMascota" />
         <activity android:name=".perfilMascota" />
-        <activity android:name=".InforApp" />
         <activity android:name=".userRegistration.ActivityRegistrationName" />
         <activity android:name=".userRegistration.ActivityRegistrationEmail" />
 
         <activity android:name=".userRegistration.ActivityRegistrationPassword" />
         <activity android:name=".userRegistration.ActivityRegistrationBirthDate" />
-        <activity android:name=".home.editarPerfil" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".crearMascota" />
-        <activity android:name=".crearAnuncio"></activity>
         <activity android:name=".home.ActivityHome" />
+        <activity android:name=".home.user.EditProfile" />
+        <activity android:name=".home.home.AdCreate" />
+        <activity android:name=".home.settings.InfoApp" />
+        <activity android:name=".home.pet.PetCreate" />
     </application>
 
 </manifest>

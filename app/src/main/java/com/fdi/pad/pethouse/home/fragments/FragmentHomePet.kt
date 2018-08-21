@@ -11,11 +11,11 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import com.fdi.pad.pethouse.MascotaList
 import com.fdi.pad.pethouse.R
-import com.fdi.pad.pethouse.crearMascota
 
 import com.fdi.pad.pethouse.entities.Pet
+import com.fdi.pad.pethouse.home.pet.PetCreate
+import com.fdi.pad.pethouse.home.pet.PetList
 import com.fdi.pad.pethouse.perfilMascota
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -32,9 +32,9 @@ import java.util.ArrayList
 class FragmentHomePet : Fragment() {
 
     private var listView: ListView? = null
-    private var listaMascotas: ArrayList<MascotaList>? = null
+    private var listaMascotas: ArrayList<PetList>? = null
     private var listaUids: ArrayList<String>? = null
-    private var mascota: MascotaList? = null
+    private var mascota: PetList? = null
     private var pets: Pet? = null
     private var petElegida: Pet? = null
 
@@ -58,7 +58,7 @@ class FragmentHomePet : Fragment() {
         val btnAniadir = view!!.findViewById<View>(R.id.bntFlotingMascota) as FloatingActionButton
 
         btnAniadir.setOnClickListener {
-            val intent = Intent(activity, crearMascota::class.java)
+            val intent = Intent(activity, PetCreate::class.java)
             startActivity(intent)
         }
 
@@ -68,10 +68,10 @@ class FragmentHomePet : Fragment() {
         cargarListaFirebase()
 
         listView!!.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            mascota = MascotaList.getUid(position, listaMascotas)
+            mascota = PetList.getUid(position, listaMascotas!!)
 
             //obtenemos la mascota con su id
-            FirebaseDatabase.getInstance().getReference("pets").child(myAuthentication!!.currentUser!!.uid).child(mascota!!.uid)
+            FirebaseDatabase.getInstance().getReference("pets").child(myAuthentication!!.currentUser!!.uid).child(mascota!!.uidsPet!!)
                     .addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             petElegida = dataSnapshot.getValue(Pet::class.java)
@@ -119,11 +119,11 @@ class FragmentHomePet : Fragment() {
 
         var i = 0
         while (i < listaMascotasFirebase!!.size) {
-            listaMascotas!!.add(MascotaList(listaMascotasFirebase!![i].name, listaUids!![i], i))
+            listaMascotas!!.add(PetList(listaMascotasFirebase!![i].name, listaUids!![i], i))
             i++
         }
 
-        val lista = ArrayList<MascotaList>()
+        val lista = ArrayList<PetList>()
         i = 0
         while (i < listaMascotas!!.size) {
             lista.add(listaMascotas!![i])

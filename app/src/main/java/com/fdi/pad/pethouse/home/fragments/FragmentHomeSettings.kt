@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.fdi.pad.pethouse.ActivityLogin
-import com.fdi.pad.pethouse.InforApp
 import com.fdi.pad.pethouse.R
+import com.fdi.pad.pethouse.home.settings.InfoApp
 
 import com.google.firebase.auth.FirebaseAuth
 
@@ -48,7 +48,7 @@ class FragmentHomeSettings : Fragment(), View.OnClickListener {
                 startActivity(intent)
             }
             R.id.buttonInformation -> {
-                val intent = Intent(activity, InforApp::class.java)
+                val intent = Intent(activity, InfoApp::class.java)
                 startActivity(intent)
             }
         }
