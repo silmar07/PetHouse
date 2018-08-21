@@ -54,7 +54,7 @@ public class editarPerfil extends AppCompatActivity {
                 DatabaseReference database = FirebaseDatabase.getInstance().getReference();
                 FirebaseAuth edit = FirebaseAuth.getInstance();
                 FirebaseUser fireU = edit.getCurrentUser();
-                User user = new User(fireU.getUid(), Editname.getText().toString(), Editsurname.getText().toString(), EditEmail.getText().toString(), EditCumple.getText().toString());
+                User user = new User(fireU.getUid(), Editname.getText().toString(), Editsurname.getText().toString(), EditEmail.getText().toString(), "",EditCumple.getText().toString());
                 database.child("users").child(fireU.getUid()).setValue(user);
 
                 Intent data = new Intent();

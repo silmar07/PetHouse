@@ -6,7 +6,7 @@
 
 
     <ListView
-        android:id="@+id/listaAnuncios"
+        android:id="@+id/listaAnunciosHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
@@ -24,7 +24,10 @@
         android:layout_marginEnd="27dp"
         android:layout_marginRight="27dp"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:foregroundGravity="bottom"/>
+        android:focusable="true"
+        android:foregroundGravity="bottom"
+        app:backgroundTint="@color/colorPrimaryLight"
+        app:rippleColor="@color/colorPrimary"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </RelativeLayout>

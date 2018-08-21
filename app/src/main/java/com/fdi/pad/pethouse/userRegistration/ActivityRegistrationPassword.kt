@@ -12,43 +12,56 @@ import java.util.regex.Pattern
  * Actividad que define el paso del registro donde se introduce la contraseña del usuario.
  */
 class ActivityRegistrationPassword : AppCompatActivity() {
-    /*------------------------------CONSTANTES---------------------------*/
+
+    //region CONSTANTES
+
     /**
      * Parámetro para determinar el nombre del usuario.
      */
     private val nameUser = "name"
+
     /**
      * Parámetro para determinar los apellidos del usuario.
      */
     private val surnameUser  = "surname"
+
     /**
      * Parámetro para determinar el correo electrónico del usuario.
      */
     private val emailUser = "email"
+
     /**
      * Parámetro para determinar la contraseña del usuario.
      */
     private val passwordUser = "password"
+
     /**
      * Determina el patrón correcto de la contraseña del usuario.
      */
     private val patternPassword = ".{8,}"
 
-    /*------------------------------ATRIBUTOS----------------------------*/
+    //endregion
+
+    //region ATRIBUTOS
+
     /**
      * Nombre del usuario.
      */
     private var name: String? = null
+
     /**
      * Apellidos del usuario.
      */
+
     private var surname: String? = null
     /**
      * Correo electrónico del usuario.
      */
     private var email: String? = null
 
-    /*--------------------------ETAPAS---------------------------------*/
+    //endregion
+
+    //region EVENTOS
     /**
      * Creación de la actividad.
      *
@@ -66,7 +79,10 @@ class ActivityRegistrationPassword : AppCompatActivity() {
         email = intent.getStringExtra(emailUser)
     }
 
-    /*--------------------------MÉTODOS PRIVADOS---------------------------------*/
+    //endregion
+
+    //region MÉTODOS PRIVADOS
+
     /**
      * Valida el campo y envía a la siguiente pantalla.
      */
@@ -105,4 +121,7 @@ class ActivityRegistrationPassword : AppCompatActivity() {
         }
         return correctPassword
     }
+
+    //endregion
+
 }

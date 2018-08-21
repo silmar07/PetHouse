@@ -12,17 +12,22 @@ import kotlinx.android.synthetic.main.activity_registration_name.*
  */
 class ActivityRegistrationName : AppCompatActivity() {
 
-    /*------------------------------CONSTANTES---------------------------*/
+    //region CONSTANTES
+
     /**
      * Parámetro para determinar el nombre del usuario.
      */
     private val nameUser = "name"
+
     /**
      * Parámetro para determinar los apellidos del usuario.
      */
     private val surnameUser  = "surname"
 
-    /*--------------------------ETAPAS---------------------------------*/
+    //endregion
+
+    //region EVENTOS
+
     /**
      * Creación de la actividad.
      *
@@ -35,7 +40,10 @@ class ActivityRegistrationName : AppCompatActivity() {
         buttonNext.setOnClickListener { buttonNext() }
     }
 
-    /*--------------------------MÉTODOS PRIVADOS---------------------------------*/
+    //endregion
+
+    //region MÉTODOS PRIVADOS
+
     /**
      * Valida los campos y envía a la siguiente pantalla.
      */
@@ -72,4 +80,7 @@ class ActivityRegistrationName : AppCompatActivity() {
 
         return correctName && correctSurname
     }
+
+    //endregion
+
 }

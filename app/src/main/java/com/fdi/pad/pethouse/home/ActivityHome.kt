@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import android.widget.Toast
 
 import com.fdi.pad.pethouse.R
 import com.fdi.pad.pethouse.home.utils.*
@@ -16,9 +15,15 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class ActivityHome : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
+    //region ATRIBUTOS
+
     private val keyPosition = "keyPosition"
 
     private var navPosition: BottomNavigationPosition = BottomNavigationPosition.HOME
+
+    //endregion
+
+    //region EVENTOS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,38 +31,7 @@ class ActivityHome : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(R.layout.activity_home)
 
         initBottomNavigation()
-
         initFragment(savedInstanceState)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onPause() {
-        Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show()
-        super.onPause()
-    }
-
-    override fun onStop() {
-        Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show()
-        super.onStop()
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onDestroy() {
-        Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show()
-        super.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -76,6 +50,9 @@ class ActivityHome : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return switchFragment(navPosition)
     }
 
+    //endregion
+
+    //region MÉTODOS PRIVADOS
 
     private fun restoreSaveInstanceState(savedInstanceState: Bundle?) {
         // Restore the current navigation position.
@@ -128,4 +105,7 @@ class ActivityHome : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit()
     }
+
+    //endregion
+    
 }

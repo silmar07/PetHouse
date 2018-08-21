@@ -1,5 +1,6 @@
 package com.fdi.pad.pethouse.home.fragments
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -23,10 +24,10 @@ import com.google.firebase.database.ValueEventListener
 class FragmentHomeUser : Fragment() {
 
     private var user: User? = null
-    private var user_name: TextView? = null
-    private var my_authentication: FirebaseAuth? = null
-    private var user_birthdate: TextView? = null
-    private var user_email: TextView? = null
+    private var userName: TextView? = null
+    private var myAuthentication: FirebaseAuth? = null
+    private var userBirthdate: TextView? = null
+    private var userEmail: TextView? = null
 
     companion object {
         val TAG: String = FragmentHomeUser::class.java.simpleName
@@ -35,28 +36,28 @@ class FragmentHomeUser : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_home_user, null)
+        val view = inflater.inflate(R.layout.fragment_home_user, container, false)
         val edit = view.findViewById<Button>(R.id.editar)
         edit.setOnClickListener {
-            val intent: Intent = Intent(activity, editarPerfil::class.java)
+            val intent = Intent(activity, editarPerfil::class.java)
             intent.putExtra(editarPerfil.USER_EXTRA, user)
             startActivityForResult(intent, EDIT_CODE)
         }
         return view
     }
-
+    
     override fun onActivityCreated(state: Bundle?) {
         super.onActivityCreated(state)
-        user_name = view!!.findViewById<View>(R.id.textViewHomeUserName) as TextView
-        user_birthdate = view!!.findViewById<View>(R.id.textViewHomeUserBirthdate) as TextView
-        user_email = view!!.findViewById<View>(R.id.textViewHomeUserEmail) as TextView
-        my_authentication = FirebaseAuth.getInstance()
+        userName = view!!.findViewById<View>(R.id.textViewHomeUserName) as TextView
+        userBirthdate = view!!.findViewById<View>(R.id.textViewHomeUserBirthdate) as TextView
+        userEmail = view!!.findViewById<View>(R.id.textViewHomeUserEmail) as TextView
+        myAuthentication = FirebaseAuth.getInstance()
 
         updateUser()
     }
 
     private fun updateUser() {
-        FirebaseDatabase.getInstance().getReference("users").child(my_authentication!!.currentUser!!.uid)
+        FirebaseDatabase.getInstance().getReference("users").child(myAuthentication!!.currentUser!!.uid)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         user = dataSnapshot.getValue(User::class.java)
@@ -69,10 +70,11 @@ class FragmentHomeUser : Fragment() {
                 })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateUI() {
-        user_name!!.text = user!!.name + " " + user!!.surname
-        user_birthdate!!.text = user!!.birthdate
-        user_email!!.text = user!!.email
+        userName!!.text = user!!.name + " " + user!!.surname
+        userBirthdate!!.text = user!!.birthdate
+        userEmail!!.text = user!!.email
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

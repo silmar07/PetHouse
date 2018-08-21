@@ -33,4 +33,8 @@
     <string name="incorrect_email_format">Formato de correo electrónico incorrecto</string>
     <string name="incorrect_password_format">Mínimo 8 caracteres</string>
     <string name="incorrect_birthdate_format">Se requiere ser mayor de edad</string>
+    <string name="address_hint">Escribe la dirección de su casa.</string>
+    <string name="address">Dirección del domicilio:</string>
+    <string name="address_description">Dirección del domicilio</string>
+    <string name="question_address">¿Cuál es la dirección de su casa?</string>
 </resources>

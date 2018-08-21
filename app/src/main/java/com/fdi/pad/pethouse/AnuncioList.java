@@ -1,9 +1,6 @@
 package com.fdi.pad.pethouse;
 
 import android.net.Uri;
-import android.widget.TextView;
-
-import com.fdi.pad.pethouse.entities.Ad;
 
 import java.util.ArrayList;
 
@@ -13,8 +10,6 @@ import java.util.ArrayList;
 
 public class AnuncioList {
 
-
-    private String enlace;
     private String texto;
     private Uri uri;
     private int pos;
@@ -26,25 +21,11 @@ public class AnuncioList {
         pos = p;
     }
 
-    public String getEnlace() {
-        return enlace;
-    }
-
-    public void setEnlace(String enlace) {
-        this.enlace = enlace;
-    }
-
     public String toString() {
         return texto;
     }
 
-    public Uri getUri(){
-        return uri;
-    }
-
-    public int getPos() {
-        return pos;
-    }
+    public Uri getUri(){ return uri; }
 
     public static AnuncioList getAnuncio(int pos, ArrayList<AnuncioList> lista) {
 
@@ -56,7 +37,7 @@ public class AnuncioList {
 
             AnuncioList aux = lista.get(i);
 
-            if (aux.getPos() == pos) {
+            if (aux.pos == pos) {
                 enc = true;
                 a = aux;
             }

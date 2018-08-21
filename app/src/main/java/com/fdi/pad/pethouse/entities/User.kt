@@ -10,9 +10,11 @@ data class User(var uuid: String? = null,
                 var name: String? = null,
                 var surname: String? = null,
                 var email: String? = null,
+                var address: String? = null,
                 var birthdate: String? = null) : Parcelable {
 
     constructor(parcel: Parcel) : this(
+            parcel.readString(),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
@@ -24,6 +26,7 @@ data class User(var uuid: String? = null,
         parcel.writeString(name)
         parcel.writeString(surname)
         parcel.writeString(email)
+        parcel.writeString(address)
         parcel.writeString(birthdate)
     }
 

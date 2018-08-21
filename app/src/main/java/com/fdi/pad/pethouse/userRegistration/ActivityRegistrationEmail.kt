@@ -15,43 +15,57 @@ import kotlinx.android.synthetic.main.activity_registration_email.*
  * Actividad que define el paso del registro donde se introduce el email del usuario.
  */
 class ActivityRegistrationEmail : AppCompatActivity() {
-    /*------------------------------CONSTANTES---------------------------*/
+
+    //region CONSTANTES
+
     /**
      * Parámetro para determinar la base de datos de los usuarios.
      */
     private val databaseUsers = "users"
+
     /**
      * Parámetro para determinar el uuid del usuario.
      */
     private val uuidUser = "uuid"
+
     /**
      * Parámetro para determinar el nombre del usuario.
      */
     private val nameUser = "name"
+
     /**
      * Parámetro para determinar los apellidos del usuario.
      */
     private val surnameUser  = "surname"
+
     /**
      * Parámetro para determinar el correo electrónico del usuario.
      */
     private val emailUser = "email"
 
-    /*------------------------------ATRIBUTOS----------------------------*/
+    //endregion
+
+    //region ATRIBUTOS
+
     /**
      * Nombre del usuario.
      */
     private var name: String? = null
+
     /**
      * Apellidos del usuario.
      */
     private var surname: String? = null
+
     /**
      * Base de datos de nuestra aplicación.
      */
     private var database: DatabaseReference? = null
 
-    /*--------------------------ETAPAS---------------------------------*/
+    //endregion
+
+    //region EVENTOS
+
     /**
      * Creación de la actividad.
      *
@@ -70,7 +84,9 @@ class ActivityRegistrationEmail : AppCompatActivity() {
         surname = intent.getStringExtra(surnameUser)
     }
 
-    /*--------------------------MÉTODOS PRIVADOS---------------------------------*/
+    //endregion
+
+    //region MÉTODOS PRIVADOS
     /**
      * Valida el email y envía a la siguiente pantalla.
      */
@@ -114,11 +130,9 @@ class ActivityRegistrationEmail : AppCompatActivity() {
     private fun checkUser(email: String) {
         var exist = false
         database!!.child(databaseUsers).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError?) {}
-
-            override fun onDataChange(p0: DataSnapshot?) {
+            override fun onDataChange(p0: DataSnapshot) {
                 /*Cogemos todos los usuarios de la apliación*/
-                val iteratorUser: MutableIterable<DataSnapshot>? = p0?.children
+                val iteratorUser: MutableIterable<DataSnapshot>? = p0.children
                 var user: User? = null
 
                 /*Buscamos el email entre los usuarios*/
@@ -132,6 +146,10 @@ class ActivityRegistrationEmail : AppCompatActivity() {
                 if (exist) existUser(user?.uuid!!)
                 else noExistUser(email)
             }
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
         })
     }
 
@@ -141,7 +159,7 @@ class ActivityRegistrationEmail : AppCompatActivity() {
      * @param uuid Identificador del usuario existente.
      */
     private fun existUser(uuid: String) {
-        val intent = Intent(this, ActivityRegistrationAddress::class.java)
+        val intent = Intent(this, ActivityRegistrationPassword::class.java)
         intent.putExtra(uuidUser, uuid)
         startActivity(intent)
     }
@@ -158,4 +176,7 @@ class ActivityRegistrationEmail : AppCompatActivity() {
         intent.putExtra(emailUser, email)
         startActivity(intent)
     }
+
+    //endregion
+
 }

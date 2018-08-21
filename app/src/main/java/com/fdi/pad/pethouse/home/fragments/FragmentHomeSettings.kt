@@ -16,34 +16,34 @@ import com.google.firebase.auth.FirebaseAuth
 
 class FragmentHomeSettings : Fragment(), View.OnClickListener {
 
-    private var button_exit: Button? = null
-    private var button_information: Button? = null
+    private var buttonExit: Button? = null
+    private var buttonInformation: Button? = null
 
     companion object {
         val TAG: String = FragmentHomeSettings::class.java.simpleName
         fun newInstance() = FragmentHomeSettings()
     }
 
-    private var my_authentication: FirebaseAuth? = null
+    private var myAuthentication: FirebaseAuth? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_ajustes, null)
+        return inflater.inflate(R.layout.fragment_ajustes, container, false)
     }
 
     override fun onActivityCreated(state: Bundle?) {
         super.onActivityCreated(state)
-        button_exit = view!!.findViewById<View>(R.id.buttonExit) as Button
-        button_exit!!.setOnClickListener(this)
+        buttonExit = view!!.findViewById<View>(R.id.buttonExit) as Button
+        buttonExit!!.setOnClickListener(this)
 
-        button_information = view!!.findViewById<View>(R.id.buttonInformation) as Button
-        button_information!!.setOnClickListener(this)
+        buttonInformation = view!!.findViewById<View>(R.id.buttonInformation) as Button
+        buttonInformation!!.setOnClickListener(this)
 
-        my_authentication = FirebaseAuth.getInstance()
+        myAuthentication = FirebaseAuth.getInstance()
     }
 
     override fun onClick(v: View) {
         when (v.id) {
             R.id.buttonExit -> {
-                my_authentication!!.signOut()
+                myAuthentication!!.signOut()
                 val intent = Intent(activity, ActivityLogin::class.java)
                 startActivity(intent)
             }

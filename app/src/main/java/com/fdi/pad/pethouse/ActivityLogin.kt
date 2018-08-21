@@ -33,7 +33,7 @@ class ActivityLogin : AppCompatActivity() {
 
     //endregion
 
-    //region ETAPAS
+    //region EVENTOS
 
     /**
      * Creación de la actividad.

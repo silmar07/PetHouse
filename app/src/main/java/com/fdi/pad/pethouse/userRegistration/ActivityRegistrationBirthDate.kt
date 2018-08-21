@@ -26,49 +26,72 @@ import java.util.*
  * Actividad que define el paso del registro donde se introduce la fecha de nacimiento del usuario.
  */
 class ActivityRegistrationBirthDate : AppCompatActivity() {
-    /*------------------------------CONSTANTES---------------------------*/
+
+    //region CONSTANTES
+
     /**
      * Parámetro para determinar la base de datos de los usuarios.
      */
     private val databaseUsers = "users"
+
     /**
      * Parámetro para determinar el nombre del usuario.
      */
     private val nameUser = "name"
+
     /**
      * Parámetro para determinar los apellidos del usuario.
      */
     private val surnameUser = "surname"
+
     /**
      * Parámetro para determinar el correo electrónico del usuario.
      */
     private val emailUser = "email"
+
     /**
      * Parámetro para determinar la contraseña del usuario.
      */
     private val passwordUser = "password"
+
+    /**
+     * Parámetro para determinar la dirección del usuario.
+     */
+    private val addressUser = "address"
+
     /**
      * Formato de la fecha.
      */
     private val dateFormat = "dd/MM/yyyy"
 
-    /*------------------------------ATRIBUTOS----------------------------*/
+    //endregion
+
+    //region ATRIBUTOS
+
     /**
      * Nombre del usuario.
      */
     private var name: String? = null
+
     /**
      * Apellidos del usuario.
      */
     private var surname: String? = null
+
     /**
      * Correo electrónico del usuario.
      */
     private var email: String? = null
+
     /**
      * Contraseña del usuario.
      */
     private var password: String? = null
+
+    /**
+     * Dirección del usuario.
+     */
+    private var address: String? = null
 
     /**
      * Año de nacimiento del usuario.
@@ -109,7 +132,10 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
      */
     private var dateSetListener: DatePickerDialog.OnDateSetListener? = null
 
-    /*--------------------------ETAPAS---------------------------------*/
+    //endregion
+
+    //region ETAPAS
+
     /**
      * Creación de la actividad.
      *
@@ -150,9 +176,12 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
         surname = intent.getStringExtra(surnameUser)
         email = intent.getStringExtra(emailUser)
         password = intent.getStringExtra(passwordUser)
+        address = intent.getStringExtra(addressUser)
     }
 
-    /*--------------------------MÉTODOS PRIVADOS---------------------------------*/
+    //endregion
+
+    //region MÉTODOS PRIVADOS
     /**
      * Abre el calendario para seleccionar la fecha.
      */
@@ -178,7 +207,7 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
                 .addOnCompleteListener(this) { task: Task<AuthResult> ->
                     if (task.isSuccessful) {
                         userSession = authentication!!.currentUser
-                        val user = User(userSession!!.uid, name!!, surname!!, email!!, birthdate)
+                        val user = User(userSession!!.uid, name!!, surname!!, email!!, address!!, birthdate)
                         database!!.child(databaseUsers).child(userSession!!.uid).setValue(user)
                         registerUser()
                     } else {
@@ -241,4 +270,7 @@ class ActivityRegistrationBirthDate : AppCompatActivity() {
 
         return age
     }
+
+    //endregion
+
 }

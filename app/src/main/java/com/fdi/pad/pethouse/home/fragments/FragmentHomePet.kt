@@ -20,7 +20,6 @@ import com.fdi.pad.pethouse.perfilMascota
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
@@ -39,31 +38,26 @@ class FragmentHomePet : Fragment() {
     private var pets: Pet? = null
     private var petElegida: Pet? = null
 
-    private var my_authentication: FirebaseAuth? = null
-    private val petsDatabase: DatabaseReference? = null
-    private var listaMascotas_Firebase: ArrayList<Pet>? = null
+    private var myAuthentication: FirebaseAuth? = null
+    private var listaMascotasFirebase: ArrayList<Pet>? = null
 
     companion object {
-
         const val EDIT_CODE = 1000
         val TAG: String = FragmentHomePet::class.java.simpleName
         fun newInstance() = FragmentHomePet()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        return inflater.inflate(R.layout.fragment_mascota, null)
-
+        return inflater.inflate(R.layout.fragment_mascota, container, false)
     }
-
 
     override fun onActivityCreated(state: Bundle?) {
         super.onActivityCreated(state)
 
         //boton para añadir mascotas
-        val btnAñadir = view!!.findViewById<View>(R.id.bntFlotingMascota) as FloatingActionButton
+        val btnAniadir = view!!.findViewById<View>(R.id.bntFlotingMascota) as FloatingActionButton
 
-        btnAñadir.setOnClickListener {
+        btnAniadir.setOnClickListener {
             val intent = Intent(activity, crearMascota::class.java)
             startActivity(intent)
         }
@@ -73,18 +67,17 @@ class FragmentHomePet : Fragment() {
 
         cargarListaFirebase()
 
-        listView!!.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+        listView!!.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             mascota = MascotaList.getUid(position, listaMascotas)
 
             //obtenemos la mascota con su id
-            FirebaseDatabase.getInstance().getReference("pets").child(my_authentication!!.currentUser!!.uid).child(mascota!!.uid)
+            FirebaseDatabase.getInstance().getReference("pets").child(myAuthentication!!.currentUser!!.uid).child(mascota!!.uid)
                     .addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             petElegida = dataSnapshot.getValue(Pet::class.java)
 
                             //Cambiamos actividad
-                            val intent: Intent
-                            intent = Intent(activity, perfilMascota::class.java)
+                            val intent = Intent(activity, perfilMascota::class.java)
                             intent.putExtra("uidPet", mascota!!.uidsPet)
                             intent.putExtra(perfilMascota.PET_EXTRA, petElegida)
                             startActivityForResult(intent, EDIT_CODE)
@@ -99,19 +92,17 @@ class FragmentHomePet : Fragment() {
 
     private fun cargarListaFirebase() {
 
-        listaMascotas_Firebase = ArrayList()
+        listaMascotasFirebase = ArrayList()
         listaUids = ArrayList()
-        my_authentication = FirebaseAuth.getInstance()
+        myAuthentication = FirebaseAuth.getInstance()
 
-        FirebaseDatabase.getInstance().getReference("pets").child(my_authentication!!.currentUser!!.uid)
+        FirebaseDatabase.getInstance().getReference("pets").child(myAuthentication!!.currentUser!!.uid)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        var i = 0
-                        for (snapshot in dataSnapshot.children) {
-                            listaUids!!.add(i, snapshot.key)
+                        for ((i, snapshot) in dataSnapshot.children.withIndex()) {
+                            listaUids!!.add(i, snapshot.key!!)
                             pets = snapshot.getValue(Pet::class.java)
-                            listaMascotas_Firebase!!.add(pets!!)
-                            i++
+                            listaMascotasFirebase!!.add(pets!!)
                         }
                         cargarListaMascotas()
                     }
@@ -127,8 +118,8 @@ class FragmentHomePet : Fragment() {
         listaMascotas = ArrayList()
 
         var i = 0
-        while (i < listaMascotas_Firebase!!.size) {
-            listaMascotas!!.add(MascotaList(listaMascotas_Firebase!![i].name, listaUids!![i], i))
+        while (i < listaMascotasFirebase!!.size) {
+            listaMascotas!!.add(MascotaList(listaMascotasFirebase!![i].name, listaUids!![i], i))
             i++
         }
 
@@ -143,6 +134,5 @@ class FragmentHomePet : Fragment() {
                 android.R.layout.simple_expandable_list_item_1, lista)
 
         listView!!.adapter = adapter
-
     }
 }
