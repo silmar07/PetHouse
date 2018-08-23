@@ -8,17 +8,23 @@ import android.os.Parcelable
  */
 data class Ad(var uuid: String? = null,
               var name: String? = null,
-              var url: String? = null): Parcelable {
+              var url: String? = null,
+              var latitude: Double? = null,
+              var longitude: Double? = null): Parcelable {
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
-            parcel.readString())
+            parcel.readString(),
+            parcel.readDouble(),
+            parcel.readDouble())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(uuid)
         parcel.writeString(name)
         parcel.writeString(url)
+        parcel.writeDouble(latitude!!)
+        parcel.writeDouble(longitude!!)
     }
 
     override fun describeContents(): Int {

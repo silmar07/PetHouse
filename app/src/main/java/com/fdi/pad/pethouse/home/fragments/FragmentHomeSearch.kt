@@ -12,13 +12,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.fdi.pad.pethouse.R
+import com.fdi.pad.pethouse.entities.Ad
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_home_search.*
+import java.util.ArrayList
 
 /**
  *  Fragmente de la actividad donde se define el mapa de búsqueda.
@@ -58,6 +65,8 @@ class FragmentHomeSearch : Fragment(), OnMapReadyCallback {
      */
     private var mFusedLocationProviderClient: FusedLocationProviderClient? = null
 
+    private var listaAnunciosFirebase: ArrayList<Ad>? = null
+
     companion object {
         val TAG: String = FragmentHomeSearch::class.java.simpleName
         fun newInstance() = FragmentHomeSearch()
@@ -92,6 +101,26 @@ class FragmentHomeSearch : Fragment(), OnMapReadyCallback {
             }
             mMap!!.isMyLocationEnabled = true
             mMap!!.uiSettings.isMyLocationButtonEnabled = true
+
+            listaAnunciosFirebase = ArrayList()
+
+            FirebaseDatabase.getInstance().getReference("ads")
+                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            for (snapshot in dataSnapshot.children) {
+
+                                listaAnunciosFirebase!!.add(snapshot.getValue(Ad::class.java)!!)
+                            }
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            Log.e(FragmentHomeHome.TAG, databaseError.toString())
+                        }
+                    })
+            listaAnunciosFirebase!!.forEach {
+                val myPlace = LatLng(it.latitude!!, it.longitude!!)
+                mMap!!.addMarker(MarkerOptions().position(myPlace).title(it.name))
+            }
         }
     }
 
