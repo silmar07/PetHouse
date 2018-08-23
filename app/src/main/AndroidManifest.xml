@@ -30,8 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".modMascota" />
-        <activity android:name=".perfilMascota" />
         <activity android:name=".userRegistration.ActivityRegistrationName" />
         <activity android:name=".userRegistration.ActivityRegistrationEmail" />
 
@@ -47,6 +45,8 @@
         <activity android:name=".home.home.AdCreate" />
         <activity android:name=".home.settings.InfoApp" />
         <activity android:name=".home.pet.PetCreate" />
+        <activity android:name=".home.pet.PetProfile" />
+        <activity android:name=".home.pet.PetMod" />
     </application>
 
 </manifest>

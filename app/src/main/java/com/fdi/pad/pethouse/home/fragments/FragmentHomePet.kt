@@ -16,7 +16,7 @@ import com.fdi.pad.pethouse.R
 import com.fdi.pad.pethouse.entities.Pet
 import com.fdi.pad.pethouse.home.pet.PetCreate
 import com.fdi.pad.pethouse.home.pet.PetList
-import com.fdi.pad.pethouse.perfilMascota
+import com.fdi.pad.pethouse.home.pet.PetProfile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -77,9 +77,9 @@ class FragmentHomePet : Fragment() {
                             petElegida = dataSnapshot.getValue(Pet::class.java)
 
                             //Cambiamos actividad
-                            val intent = Intent(activity, perfilMascota::class.java)
+                            val intent = Intent(activity, PetProfile::class.java)
                             intent.putExtra("uidPet", mascota!!.uidsPet)
-                            intent.putExtra(perfilMascota.PET_EXTRA, petElegida)
+                            intent.putExtra(PetProfile.PET_EXTRA, petElegida)
                             startActivityForResult(intent, EDIT_CODE)
                         }
 
