@@ -108,8 +108,10 @@ class FragmentHomeSearch : Fragment(), OnMapReadyCallback {
                     .addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             for (snapshot in dataSnapshot.children) {
-
-                                listaAnunciosFirebase!!.add(snapshot.getValue(Ad::class.java)!!)
+                                val ad = snapshot.getValue(Ad::class.java)!!
+                                listaAnunciosFirebase!!.add(ad)
+                                val myPlace = LatLng(ad.latitude!!, ad.longitude!!)
+                                mMap!!.addMarker(MarkerOptions().position(myPlace).title(ad.name))
                             }
                         }
 
@@ -117,10 +119,7 @@ class FragmentHomeSearch : Fragment(), OnMapReadyCallback {
                             Log.e(FragmentHomeHome.TAG, databaseError.toString())
                         }
                     })
-            listaAnunciosFirebase!!.forEach {
-                val myPlace = LatLng(it.latitude!!, it.longitude!!)
-                mMap!!.addMarker(MarkerOptions().position(myPlace).title(it.name))
-            }
+
         }
     }
 
